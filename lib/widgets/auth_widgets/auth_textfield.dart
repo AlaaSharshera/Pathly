@@ -4,7 +4,7 @@ import 'package:pathly/constant.dart';
 
 class AuthTextField extends StatelessWidget {
   const AuthTextField({
-    required this.controller,
+    this.controller,
     this.focusNode,
     required this.hintText,
     this.keyboardType = TextInputType.text,
