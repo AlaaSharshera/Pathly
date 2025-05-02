@@ -2,7 +2,7 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:pathly/views/initial_view.dart';
+import 'package:pathly/views/splash_screen.dart';
 
 class Pathly extends StatelessWidget {
   const Pathly({super.key});
@@ -19,7 +19,7 @@ class Pathly extends StatelessWidget {
           locale: DevicePreview.locale(context),
           builder: DevicePreview.appBuilder,
           debugShowCheckedModeBanner: false,
-          home: Scaffold(body: InitialView()),
+          home: Scaffold(body: SplashView()),
         );
       },
     );
