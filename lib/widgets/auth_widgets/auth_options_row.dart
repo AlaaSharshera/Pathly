@@ -18,15 +18,15 @@ class AuthOptionsRow extends StatelessWidget {
       children: [
         customImage(
           onpressed: onpressedfacebook,
-          imagePath: 'assets/images/facebook_icon.png',
+          imagePath: 'assets/icons/facebook_icon.png',
         ),
         customImage(
           onpressed: onPressedgoogle,
-          imagePath: 'assets/images/google_icon.png',
+          imagePath: 'assets/icons/google_icon.png',
         ),
         customImage(
           onpressed: onPressedApple,
-          imagePath: 'assets/images/apple_icon.png',
+          imagePath: 'assets/icons/apple_icon.png',
         ),
       ],
     );
