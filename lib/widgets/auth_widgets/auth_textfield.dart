@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pathly/constant.dart';
 
@@ -13,6 +14,7 @@ class AuthTextField extends StatelessWidget {
     this.textInputAction,
     this.suffixIcon,
     required this.validator,
+    required this.autovalidateMode,
     super.key,
   });
   final String hintText;
@@ -24,11 +26,12 @@ class AuthTextField extends StatelessWidget {
   final TextInputType keyboardType;
   final TextInputAction? textInputAction;
   final FocusNode? focusNode;
+  final AutovalidateMode autovalidateMode;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      padding: EdgeInsets.symmetric(horizontal: 16.w),
       child: TextFormField(
         onSaved: onSaved,
 
@@ -38,15 +41,16 @@ class AuthTextField extends StatelessWidget {
         textInputAction: textInputAction,
         keyboardType: keyboardType,
         focusNode: focusNode,
-        cursorHeight: 16,
+        autovalidateMode: autovalidateMode,
+        cursorHeight: 16.h,
         decoration: InputDecoration(
           suffixIcon: suffixIcon,
           hintText: hintText,
           hintStyle: GoogleFonts.poppins(
-            textStyle: const TextStyle(fontSize: 14, color: Color(0xffD1D1D6)),
+            textStyle: TextStyle(fontSize: 14.sp, color: Color(0xffD1D1D6)),
           ),
           isDense: true,
-          contentPadding: const EdgeInsets.only(top: 12),
+          contentPadding: EdgeInsets.only(top: 12.h),
           focusedErrorBorder: const UnderlineInputBorder(
             borderSide: BorderSide(color: Colors.red),
           ),

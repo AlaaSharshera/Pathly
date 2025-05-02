@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pathly/constant.dart';
 
@@ -9,13 +10,13 @@ class AuthlabelTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       alignment: Alignment.centerLeft,
-      margin: const EdgeInsets.only(left: 20, top: 16),
+      margin: EdgeInsets.only(left: 20.w, top: 16.h),
       child: Text(
         text,
         style: GoogleFonts.poppins(
-          textStyle: const TextStyle(
+          textStyle: TextStyle(
             color: kBlackColor,
-            fontSize: 16,
+            fontSize: 16.sp,
             fontWeight: FontWeight.w500,
           ),
         ),

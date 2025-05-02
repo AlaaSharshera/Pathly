@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pathly/widgets/general_widgets/custom_switch_icon.dart';
 
@@ -13,10 +14,11 @@ class ForgetPassRow extends StatelessWidget {
         Row(
           children: [
             CustomSwitchIcon(),
+            SizedBox(width: 8.w),
             Text(
               "remember me",
               style: GoogleFonts.poppins(
-                textStyle: const TextStyle(color: Color(0xff999999)),
+                textStyle: TextStyle(color: Color(0xff999999), fontSize: 12.sp),
               ),
             ),
           ],
@@ -26,7 +28,7 @@ class ForgetPassRow extends StatelessWidget {
           child: Text(
             "Forget Password?",
             style: GoogleFonts.poppins(
-              textStyle: const TextStyle(color: Color(0xff019C4C)),
+              textStyle: TextStyle(color: Color(0xff019C4C), fontSize: 12.sp),
             ),
           ),
         ),
