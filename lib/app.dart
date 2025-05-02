@@ -22,7 +22,7 @@ class Pathly extends StatelessWidget {
           locale: DevicePreview.locale(context),
           builder: DevicePreview.appBuilder,
           debugShowCheckedModeBanner: false,
-          home: Scaffold(body: SetpassView()),
+          home: SplashView(),
         );
       },
     );

@@ -72,7 +72,7 @@ class _CustomLoginFormState extends State<CustomLoginForm> {
           ),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 8.h),
-            child: ForgetPassRow(onPressed: () {}),
+            child: ForgetPassRow(),
           ),
           AuthButton(
             buttonText: "Sign In",
