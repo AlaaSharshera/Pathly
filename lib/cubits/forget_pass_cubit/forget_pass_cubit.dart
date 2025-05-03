@@ -1,0 +1,17 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pathly/cubits/forget_pass_cubit/forget_pass_states.dart';
+import 'package:pathly/services/forget_pass_service.dart';
+
+class ForgetPassCubit extends Cubit<ForgetPassStates> {
+  ForgetPassCubit() : super(LoadingForgetPassState());
+  void forgetPassService({required String email}) async {
+    try {
+      String response = await ForgetPassService().forgetPassService(
+        email: email,
+      );
+      emit(SuccessForgetPassState(response));
+    } catch (e) {
+      emit(FailureForgetPassState(e.toString()));
+    }
+  }
+}
