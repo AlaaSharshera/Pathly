@@ -4,15 +4,17 @@ import 'package:pathly/constant.dart';
 
 import 'package:pathly/utils/api.dart';
 
-Future<dynamic> forgetPassService({required String email}) async {
-  try {
-    var response = await Api().postRequest(
-      url: "$baseUrl/Auth/forget-password",
-      body: {"email": email},
-    );
-    log(response.data.toString());
-    return response.data.toString();
-  } catch (e) {
-    throw Exception(e.toString());
+class ForgetPassService {
+  Future<dynamic> forgetPassService({required String email}) async {
+    try {
+      var response = await Api().postRequest(
+        url: "$baseUrl/Auth/forget-password",
+        body: {"email": email},
+      );
+      log(response.data.toString());
+      return response.data.toString();
+    } catch (e) {
+      throw Exception(e.toString());
+    }
   }
 }
