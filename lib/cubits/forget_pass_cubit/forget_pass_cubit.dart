@@ -5,6 +5,7 @@ import 'package:pathly/services/forget_pass_service.dart';
 class ForgetPassCubit extends Cubit<ForgetPassStates> {
   ForgetPassCubit() : super(LoadingForgetPassState());
   void forgetPassService({required String email}) async {
+    emit(LoadingForgetPassState());
     try {
       String response = await ForgetPassService().forgetPassService(
         email: email,

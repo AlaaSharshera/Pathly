@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:pathly/cubits/signup_cubit/signup_states.dart';
 import 'package:pathly/models/auth_response_model.dart';
@@ -12,13 +14,16 @@ class SignupCubit extends Cubit<SignupState> {
     required String password,
   }) async {
     try {
+      emit(LoadingSignupState());
       AuthResponseModel authResponseModel = await SignupService().signupService(
         username: username,
         email: email,
         password: password,
       );
+      log(authResponseModel.token);
       emit(SuccessSignupState(authResponseModel));
     } catch (e) {
+      log(e.toString());
       emit(FailureSignupState(e.toString()));
     }
   }

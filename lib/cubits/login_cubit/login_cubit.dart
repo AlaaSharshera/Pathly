@@ -5,7 +5,9 @@ import 'package:pathly/services/login_service.dart';
 
 class LoginCubit extends Cubit<LoginStates> {
   LoginCubit() : super(LoadingLoginState());
+
   void loginService({required String email, required String password}) async {
+    emit(LoadingLoginState());
     try {
       AuthResponseModel authResponseModel = await LoginService().loginService(
         email: email,

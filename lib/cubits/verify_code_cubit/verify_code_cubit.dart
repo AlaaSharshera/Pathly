@@ -5,6 +5,7 @@ import 'package:pathly/services/verify_code_service.dart';
 class VerifyCodeCubit extends Cubit<VerifyCodeStates> {
   VerifyCodeCubit() : super(LoadingVerifyCodeState());
   void verifyCode({required String email, required String code}) async {
+    emit(LoadingVerifyCodeState());
     try {
       String response = await VerifyCodeService().verifyCodeService(
         email: email,
