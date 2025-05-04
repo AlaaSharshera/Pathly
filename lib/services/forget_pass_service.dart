@@ -14,6 +14,7 @@ class ForgetPassService {
       log(response.data.toString());
       return response.data.toString();
     } catch (e) {
+      log(e.toString());
       throw Exception(e.toString());
     }
   }
