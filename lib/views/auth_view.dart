@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:pathly/cubits/login_cubit/login_cubit.dart';
+import 'package:pathly/cubits/signup_cubit/signup_cubit.dart';
 import 'package:pathly/widgets/auth_widgets/auth_row.dart';
 import 'package:pathly/widgets/auth_widgets/login_form.dart';
 import 'package:pathly/widgets/auth_widgets/signup_form.dart';
@@ -105,6 +108,7 @@ class _AuthViewState extends State<AuthView>
                       ),
                     ),
                     child: SingleChildScrollView(
+                      physics: NeverScrollableScrollPhysics(),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
@@ -112,8 +116,14 @@ class _AuthViewState extends State<AuthView>
                             duration: const Duration(milliseconds: 300),
                             child:
                                 isSignup
-                                    ? const CustomSignupForm()
-                                    : const CustomLoginForm(),
+                                    ? BlocProvider<SignupCubit>(
+                                      create: (context) => SignupCubit(),
+                                      child: const CustomSignupForm(),
+                                    )
+                                    : BlocProvider<LoginCubit>(
+                                      create: (context) => LoginCubit(),
+                                      child: const CustomLoginForm(),
+                                    ),
                             transitionBuilder:
                                 (child, animation) => FadeTransition(
                                   opacity: animation,
