@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:pathly/cubits/forget_pass_cubit/forget_pass_cubit.dart';
 import 'package:pathly/views/forget_pass_view.dart';
 import 'package:pathly/widgets/general_widgets/custom_switch_icon.dart';
 
@@ -27,7 +29,12 @@ class ForgetPassRow extends StatelessWidget {
         ),
         TextButton(
           onPressed: () {
-            Get.to(() => ForgetpassView());
+            Get.to(
+              () => BlocProvider<ForgetPassCubit>(
+                create: (context) => ForgetPassCubit(),
+                child: ForgetpassView(),
+              ),
+            );
           },
           child: Text(
             "Forget Password?",
