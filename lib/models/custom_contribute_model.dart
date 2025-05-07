@@ -10,20 +10,29 @@ class CustomContributeModel {
 }
 
 final List<CustomContributeModel> contributesList = const [
-  CustomContributeModel(image: "images/addplace.svg", text: "Add place"),
-  CustomContributeModel(image: "images/updatepalce.svg", text: "Update place"),
-  CustomContributeModel(image: "images/addreview.svg", text: "Add Review"),
-  CustomContributeModel(image: "images/updateroad.svg", text: "Update Road"),
+  CustomContributeModel(image: "assets/icons/addplace.svg", text: "Add place"),
+  CustomContributeModel(
+    image: "assets/icons/updatepalce.svg",
+    text: "Update place",
+  ),
+  CustomContributeModel(
+    image: "assets/icons/addreview.svg",
+    text: "Add Review",
+  ),
+  CustomContributeModel(
+    image: "assets/icons/updateroad.svg",
+    text: "Update Road",
+  ),
 ];
 
 final List<CustomContributeModel> containersList = const [
   CustomContributeModel(
-    image: "images/answerq.png",
-    text: "Answer simple\nyes/no questions\nto help others",
+    image: "assets/images/answerq.png",
+    text: "Answer simple yes/no\nquestions to help others",
     buttonText: "Start",
   ),
   CustomContributeModel(
-    image: "images/searchhistory.png",
+    image: "assets/images/searchhistory.png",
     text: "Your Search History\nWill Show Here",
     buttonText: "Contribute Now",
   ),
