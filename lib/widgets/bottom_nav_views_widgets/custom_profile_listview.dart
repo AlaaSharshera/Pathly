@@ -75,7 +75,7 @@ class CustomProfileList extends StatelessWidget {
               Positioned(
                 bottom: 12,
                 right: 20,
-                child: Image.asset("images/profile-container-image.png"),
+                child: Image.asset("assets/images/profile-container-image.png"),
               ),
               Positioned(
                 right: 20,

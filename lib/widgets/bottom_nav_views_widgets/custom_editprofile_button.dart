@@ -10,6 +10,7 @@ class CustomEditprofileButton extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ButtonStyle(
+        elevation: WidgetStatePropertyAll(0),
         backgroundColor: WidgetStatePropertyAll(Color(0xffE2EBF2)),
       ),
       child: Row(
@@ -19,7 +20,7 @@ class CustomEditprofileButton extends StatelessWidget {
           SizedBox(width: 8),
           Text(
             "Edit profile",
-            style: GoogleFonts.poppins(fontSize: 16, color: Colors.black),
+            style: GoogleFonts.poppins(fontSize: 14, color: Colors.black),
           ),
         ],
       ),

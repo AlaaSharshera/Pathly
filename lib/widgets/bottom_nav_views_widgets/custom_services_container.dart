@@ -16,7 +16,7 @@ class CustomServicesContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 76,
-      width: 181,
+      width: 170,
       decoration: BoxDecoration(
         color: Color(0xffE2EBF2),
         borderRadius: BorderRadius.circular(16),
@@ -29,7 +29,7 @@ class CustomServicesContainer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(placeName, style: Styles.stylePrimaryColorbold18),
+              Text(placeName, style: Styles.stylePrimaryColorbold16),
               Text(
                 "Edit the address",
                 style: GoogleFonts.poppins(

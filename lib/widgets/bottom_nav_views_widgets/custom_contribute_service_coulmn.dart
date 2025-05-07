@@ -18,7 +18,7 @@ class CustomContributeServiceCoulmn extends StatelessWidget {
         SvgPicture.asset(contributeModel.image),
         Text(
           contributeModel.text,
-          style: GoogleFonts.poppins(color: kPrimaryColor, fontSize: 13),
+          style: GoogleFonts.poppins(color: kPrimaryColor, fontSize: 11),
         ),
       ],
     );

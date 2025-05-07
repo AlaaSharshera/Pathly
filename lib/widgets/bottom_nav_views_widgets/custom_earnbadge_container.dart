@@ -12,7 +12,7 @@ class CustomEarnbadgeContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 342,
+      height: 300,
       width: double.infinity,
       margin: EdgeInsets.only(top: 24, bottom: 24),
 
@@ -25,7 +25,7 @@ class CustomEarnbadgeContainer extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            padding: const EdgeInsets.symmetric(vertical: 8.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -33,7 +33,7 @@ class CustomEarnbadgeContainer extends StatelessWidget {
                   "Earn Your New\nContributor badge",
                   style: Styles.styledarkgrey18bold,
                 ),
-                Image.asset("images/lock.png"),
+                Image.asset("assets/icons/lock.png", width: 50),
               ],
             ),
           ),
@@ -57,7 +57,7 @@ class TaskContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 58,
+      height: 50,
       width: double.infinity,
       padding: EdgeInsets.all(12),
       margin: EdgeInsets.symmetric(horizontal: 30, vertical: 8),
@@ -69,8 +69,8 @@ class TaskContainer extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(text, style: Styles.styledarkgrey18),
-          Text("0/2", style: Styles.styledarkgrey18),
+          Text(text, style: Styles.styledarkgrey16),
+          Text("0/2", style: Styles.styledarkgrey16),
         ],
       ),
     );
