@@ -19,7 +19,7 @@ class ProfileView extends StatelessWidget {
               padding: const EdgeInsets.all(24.0),
               child: Row(
                 children: [
-                  Image.asset("images/profile.png"),
+                  Image.asset("assets/images/profile.png"),
                   SizedBox(width: 16),
                   Column(
                     mainAxisSize: MainAxisSize.min,

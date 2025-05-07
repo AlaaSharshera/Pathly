@@ -64,7 +64,7 @@ class SettingsView extends StatelessWidget {
                           height: 1,
                           color: Color(0xff999999),
 
-                          fontSize: 18,
+                          fontSize: 14,
                         ),
                       ),
                     ),
@@ -99,7 +99,7 @@ class SettingsView extends StatelessWidget {
                             left: 16.0,
                             bottom: 16,
                           ),
-                          child: SvgPicture.asset("images/warning.svg"),
+                          child: SvgPicture.asset("assets/icons/warning.svg"),
                         ),
                       ],
                     ),
@@ -127,7 +127,7 @@ class SettingsView extends StatelessWidget {
                           height: 1,
                           color: Color(0xff999999),
 
-                          fontSize: 18,
+                          fontSize: 14,
                         ),
                       ),
                     ),

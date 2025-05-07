@@ -6,19 +6,19 @@ import 'package:pathly/widgets/bottom_nav_views_widgets/custom_services_containe
 class ServicesView extends StatelessWidget {
   const ServicesView({super.key});
   final List<String> imagesCoulmn1 = const [
-    "images/must_eat.png",
-    "images/car_services.png",
-    "images/cafe.png",
-    "images/shopping.png",
-    "images/beauty.png",
+    "assets/images/must_eat.png",
+    "assets/images/car_services.png",
+    "assets/images/cafe.png",
+    "assets/images/shopping.png",
+    "assets/images/beauty.png",
   ];
 
   final List<String> imagesCoulmn2 = const [
-    "images/best_hotel.png",
-    "images/historical_places.png",
-    "images/hospital.png",
-    "images/gym.png",
-    "images/pharmacy.png",
+    "assets/images/best_hotel.png",
+    "assets/images/historical_places.png",
+    "assets/images/hospital.png",
+    "assets/images/gym.png",
+    "assets/images/pharmacy.png",
   ];
 
   @override
@@ -28,6 +28,7 @@ class ServicesView extends StatelessWidget {
       body: SizedBox(
         width: double.infinity,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(height: 60),
             Row(
@@ -35,51 +36,60 @@ class ServicesView extends StatelessWidget {
               children: [
                 CustomServicesContainer(
                   placeName: "Home",
-                  image: "images/home.svg",
+                  image: "assets/icons/home.svg",
                 ),
                 CustomServicesContainer(
                   placeName: "Work",
-                  image: "images/work.svg",
+                  image: "assets/icons/work.svg",
                 ),
               ],
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 24.0),
-              child: Image.asset("images/map_background.png"),
+              padding: const EdgeInsets.symmetric(
+                vertical: 12.0,
+                horizontal: 16,
+              ),
+              child: Image.asset("assets/images/map_background.png"),
             ),
             Expanded(
               child: SingleChildScrollView(
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(16.0),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: [
                           Column(
                             children: List.generate(
                               imagesCoulmn1.length,
                               (index) => Padding(
-                                padding: const EdgeInsets.only(bottom: 24),
-                                child: Image.asset(imagesCoulmn1[index]),
+                                padding: const EdgeInsets.only(bottom: 16),
+                                child: Image.asset(
+                                  imagesCoulmn1[index],
+                                  width: 170,
+                                ),
                               ),
                             ),
                           ),
+
                           Column(
                             children: [
                               Column(
                                 children: List.generate(
                                   imagesCoulmn2.length,
                                   (index) => Padding(
-                                    padding: const EdgeInsets.only(bottom: 24),
-                                    child: Image.asset(imagesCoulmn2[index]),
+                                    padding: const EdgeInsets.only(bottom: 16),
+                                    child: Image.asset(
+                                      imagesCoulmn2[index],
+                                      width: 170,
+                                    ),
                                   ),
                                 ),
                               ),
                               Container(
                                 alignment: Alignment.center,
-                                width: 179,
+                                width: 165,
                                 height: 40,
                                 decoration: BoxDecoration(
                                   color: kPrimaryColor,
