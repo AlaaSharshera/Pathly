@@ -18,17 +18,18 @@ class CustomContributeContainer extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          Image.asset("images/contribute.png"),
+          Image.asset("assets/images/contribute.png"),
           Text("Keep Going!", style: Styles.styledarkgrey18bold),
+          SizedBox(height: 8),
           Text(
             "There are many ways to contribute\non pathly. Try something new as\nyou go for the next level",
-            style: Styles.styledarkgrey18,
+            style: Styles.styledarkgrey16,
           ),
           TextButton(
             onPressed: () {},
             child: Text(
               "Contribute now",
-              style: Styles.stylePrimaryColorbold18,
+              style: Styles.stylePrimaryColorbold16,
             ),
           ),
         ],

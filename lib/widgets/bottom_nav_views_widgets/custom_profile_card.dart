@@ -10,7 +10,7 @@ class CustomProfileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      leading: SvgPicture.asset(profileCardModel.image, width: 24),
+      leading: SvgPicture.asset(profileCardModel.image, width: 22),
       title: Padding(
         padding: const EdgeInsets.only(top: 8),
         child: Text(
@@ -19,7 +19,7 @@ class CustomProfileCard extends StatelessWidget {
         ),
       ),
       subtitle: Padding(
-        padding: const EdgeInsets.only(bottom: 16, top: 8),
+        padding: const EdgeInsets.symmetric(vertical: 8),
         child: Row(
           children: [
             Text("Private", style: Styles.stylegrey14),

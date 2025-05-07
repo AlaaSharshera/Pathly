@@ -12,7 +12,7 @@ class StartAnswerContributeContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 430,
+      width: 440,
       height: 156,
       padding: EdgeInsets.only(top: 20),
       margin: EdgeInsets.only(right: 20),
@@ -28,7 +28,8 @@ class StartAnswerContributeContainer extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text(contributeModel.text, style: Styles.styledarkgrey18bold),
+              SizedBox(width: 10),
+              Text(contributeModel.text, style: Styles.styledarkgrey16bold),
               TextButton(
                 onPressed: () {},
                 child: Text(
@@ -38,7 +39,7 @@ class StartAnswerContributeContainer extends StatelessWidget {
               ),
             ],
           ),
-          Image.asset(contributeModel.image, height: 141),
+          Image.asset(contributeModel.image, height: 120),
         ],
       ),
     );

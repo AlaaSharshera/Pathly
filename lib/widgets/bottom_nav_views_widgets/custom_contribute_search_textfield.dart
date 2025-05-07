@@ -9,8 +9,8 @@ class CustomContributeSearchTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 300,
-      height: 56,
-      padding: EdgeInsets.symmetric(vertical: 16),
+      height: 50,
+      padding: EdgeInsets.symmetric(vertical: 14),
       decoration: BoxDecoration(
         color: Color(0xffE2EBF2),
         borderRadius: BorderRadius.circular(16),
@@ -18,10 +18,10 @@ class CustomContributeSearchTextField extends StatelessWidget {
       child: TextFormField(
         decoration: InputDecoration(
           hintText: "Where to go?",
-          hintStyle: Styles.styledarkgrey18,
+          hintStyle: Styles.stylegrey16,
           border: InputBorder.none,
-          suffixIcon: SvgPicture.asset("images/voice_search.svg", height: 24),
-          prefixIcon: SvgPicture.asset("images/search_icon.svg"),
+          suffixIcon: SvgPicture.asset("assets/icons/voice_search.svg"),
+          prefixIcon: SvgPicture.asset("assets/icons/search_icon.svg"),
         ),
       ),
     );
