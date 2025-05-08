@@ -1,0 +1,20 @@
+import 'dart:developer';
+import 'package:dio/dio.dart';
+import 'package:pathly/utils/api.dart';
+
+class CreatePaymentService {
+  Future<dynamic> createPaymentService({
+    required String token,
+    required int palnId,
+  }) async {
+    FormData formData = FormData.fromMap({'subscriptionPlanId': palnId});
+    var response = await Api().post(
+      url: "https://pathly.runasp.net/api/Payment/create",
+      token: token,
+      body: formData,
+      contentType: null,
+    );
+    log("succes $palnId");
+    return response;
+  }
+}
