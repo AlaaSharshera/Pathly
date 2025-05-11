@@ -3,7 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:pathly/utils/textstyles.dart';
 
 class CustomContributeSearchTextField extends StatelessWidget {
-  const CustomContributeSearchTextField({super.key});
+  const CustomContributeSearchTextField({required this.color, super.key});
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,7 @@ class CustomContributeSearchTextField extends StatelessWidget {
       height: 50,
       padding: EdgeInsets.symmetric(vertical: 14),
       decoration: BoxDecoration(
-        color: Color(0xffE2EBF2),
+        color: color,
         borderRadius: BorderRadius.circular(16),
       ),
       child: TextFormField(

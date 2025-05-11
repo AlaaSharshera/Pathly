@@ -24,7 +24,7 @@ class ContributeView extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CustomContributeSearchTextField(),
+                    CustomContributeSearchTextField(color: Color(0xffE2EBF2)),
                     Image.asset("assets/images/profile.png", width: 38),
                   ],
                 ),
