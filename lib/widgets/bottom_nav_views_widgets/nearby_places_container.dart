@@ -12,7 +12,7 @@ final NearbyPlacesModel nearbyPlacesModel;
   Widget build(BuildContext context) {
     return Container(
      
-      padding: EdgeInsets.all(12),
+      padding: EdgeInsets.symmetric(horizontal:24,vertical: 16),
       color: isActive?Color(0xffF4F1F1):Colors.white,
     width: double.infinity,child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -22,9 +22,10 @@ Text(nearbyPlacesModel.name!,style: Styles.styledarkblack16bold,overflow: TextOv
 Text(nearbyPlacesModel.address!,style: Styles.styleblack16,overflow: TextOverflow.visible,),
  SizedBox(height: 10,),
 Row(
+  mainAxisAlignment: MainAxisAlignment.spaceBetween,
   children: [
     Text(nearbyPlacesModel.rating.toString(),style: Styles.styledarkblack16bold),
-    SizedBox(width: 10,),
+    //SizedBox(width: 10,),
    RatingBarIndicator(
   rating: nearbyPlacesModel.rating!, 
   itemBuilder: (context, index) => Icon(

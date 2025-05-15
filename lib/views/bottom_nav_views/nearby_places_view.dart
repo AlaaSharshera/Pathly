@@ -36,9 +36,9 @@ class _NearbyPlacesViewState extends State<NearbyPlacesView> {
                       ),
                     );
         }else if (state is LoadedNearbyPlacesState){
-return ListView.builder(
+return ListView.separated(
         itemCount: state.nearbyPlaces.length,
-        itemBuilder:
+          itemBuilder:
             (context, index) => InkWell(
               onTap: () async {
                 selectedIndex = index;
@@ -47,6 +47,15 @@ return ListView.builder(
               },
               child: NearbyPlacesContainer(isActive: selectedIndex == index,nearbyPlacesModel: state.nearbyPlaces[index]),
             ),
+            separatorBuilder: (context, index) => Divider(
+              color: kPrimaryColor,
+              thickness: 0.5,
+              height: 1,
+              indent: 15,
+              endIndent: 15,
+
+            ),
+      
       );
         }else if (state is FailureNearbyPlacesState){
           return Text(state.errMessage);
