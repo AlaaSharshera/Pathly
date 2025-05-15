@@ -14,4 +14,42 @@ class GetNearbyPlacesCubit extends Cubit<GetNearbyPlacesStates>{
       emit(FailureNearbyPlacesState(e.toString()));
     }
   }
+
+   Future getAllNearbyPlaces({required double lat,required double lng})async{
+    try{
+      emit(LoadingNearbyPlacesState());
+      
+      List<NearbyPlacesModel> allPlaces=[];
+      final types = ["tourist_attraction","clothing_store","hospital","lodging",'cafe','car_wash', 'gym','pharmacy', 'restaurant','gas_station'];
+      
+for (final type in types) {
+        final places = await GetNearbyPlacesService().getNearbyPlaces(lat: lat, lng: lng, type: type);
+        allPlaces.addAll(places);}
+        allPlaces.shuffle();
+      emit(LoadedNearbyPlacesState(allPlaces));
+    }catch(e){
+      emit(FailureNearbyPlacesState(e.toString()));
+    }
+  }
+
+  Future getCarServiceNearbyPlaces({required double lat,required double lng})async{
+    try{
+      emit(LoadingNearbyPlacesState());
+      
+      List<NearbyPlacesModel> allPlaces=[];
+      final types = ['gas_station', 'car_repair','car_dealer', 'car_wash'];
+      
+for (final type in types) {
+        final places = await GetNearbyPlacesService().getNearbyPlaces(lat: lat, lng: lng, type: type);
+        allPlaces.addAll(places);}
+        allPlaces.shuffle();
+      emit(LoadedNearbyPlacesState(allPlaces));
+    }catch(e){
+      emit(FailureNearbyPlacesState(e.toString()));
+    }
+  }
+
+
 }
+
+ 
