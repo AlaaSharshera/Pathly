@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:pathly/constant.dart';
 import 'package:pathly/cubits/get_nearby_places_cubit/get_nearby_places_cubit.dart';
 import 'package:pathly/cubits/get_nearby_places_cubit/get_nearby_places_states.dart';
@@ -23,9 +24,10 @@ class _NearbyPlacesViewState extends State<NearbyPlacesView> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        title: Text("Nearby ${widget.serviceName}s", style: Styles.stylePrimaryColorbold18),
+        backgroundColor: kPrimaryColor,
+        elevation: 1,
+        
+        title: Text("${widget.serviceName}s", style: GoogleFonts.poppins(color: Colors.white,fontSize: 18)),
       ),
       body: BlocBuilder<GetNearbyPlacesCubit,GetNearbyPlacesStates>(builder: (context,state){
         if (state is LoadingNearbyPlacesState){

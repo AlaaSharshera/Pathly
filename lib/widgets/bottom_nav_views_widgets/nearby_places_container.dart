@@ -12,7 +12,7 @@ final NearbyPlacesModel nearbyPlacesModel;
   Widget build(BuildContext context) {
     return Container(
      
-      padding: EdgeInsets.symmetric(horizontal:24,vertical: 16),
+      padding: EdgeInsets.all(24),
       color: isActive?Color(0xffF4F1F1):Colors.white,
     width: double.infinity,child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
