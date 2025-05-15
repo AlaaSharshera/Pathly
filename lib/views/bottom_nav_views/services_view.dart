@@ -56,7 +56,18 @@ class ServicesView extends StatelessWidget {
                               (index) => InkWell(
                                 onTap: () {
                                   Get.to(
-                                    () => BlocProvider<GetNearbyPlacesCubit>(
+                                    () =>index==1? BlocProvider<GetNearbyPlacesCubit>(
+                                      create:
+                                          (context) =>
+                                              GetNearbyPlacesCubit()
+                                                ..getCarServiceNearbyPlaces(
+                                                  lat: 31.4355529,
+                                                  lng: 31.6746909,
+                                                 
+                                                ),
+                                      child: NearbyPlacesView(serviceName:servicesCoulmn1[index]
+                                                          .serviceName.replaceAll("_", " ") ,),
+                                    ): BlocProvider<GetNearbyPlacesCubit>(
                                       create:
                                           (context) =>
                                               GetNearbyPlacesCubit()
@@ -68,7 +79,7 @@ class ServicesView extends StatelessWidget {
                                                           .serviceName,
                                                 ),
                                       child: NearbyPlacesView(serviceName:servicesCoulmn1[index]
-                                                          .serviceName ,),
+                                                          .serviceName.replaceAll("_", " ") ,),
                                     ),
                                   );
                                 },
@@ -103,7 +114,7 @@ class ServicesView extends StatelessWidget {
                                                           .serviceName,
                                                 ),
                                       child: NearbyPlacesView(serviceName: servicesCoulmn2[index]
-                                                          .serviceName,),
+                                                          .serviceName.replaceAll("_", " "),),
                                     ),
                                   );
                                     },
@@ -119,18 +130,32 @@ class ServicesView extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              Container(
-                                alignment: Alignment.center,
-                                width: 165,
-                                height: 40,
-                                decoration: BoxDecoration(
-                                  color: kPrimaryColor,
-                                  borderRadius: BorderRadius.circular(16),
-                                ),
-                                child: Text(
-                                  "More",
-                                  style: GoogleFonts.poppins(
-                                    color: Colors.white,
+                              InkWell(
+                                onTap: (){
+                                   Get.to(
+                                    () => BlocProvider<GetNearbyPlacesCubit>(
+                                      create:
+                                          (context) =>
+                                              GetNearbyPlacesCubit()
+                                                ..getAllNearbyPlaces(  lat: 31.4355529,
+                                                  lng: 31.6746909,),
+                                      child: NearbyPlacesView(serviceName: "Place",),
+                                    ),
+                                  );
+                                },
+                                child: Container(
+                                  alignment: Alignment.center,
+                                  width: 165,
+                                  height: 40,
+                                  decoration: BoxDecoration(
+                                    color: kPrimaryColor,
+                                    borderRadius: BorderRadius.circular(16),
+                                  ),
+                                  child: Text(
+                                    "More",
+                                    style: GoogleFonts.poppins(
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
                               ),
