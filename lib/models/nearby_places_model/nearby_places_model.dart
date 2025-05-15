@@ -3,7 +3,7 @@ import 'location.dart';
 class NearbyPlacesModel {
   String? name;
   String? address;
-  int? rating;
+  double? rating;
   Location? location;
 
   NearbyPlacesModel({this.name, this.address, this.rating, this.location});
@@ -11,7 +11,7 @@ class NearbyPlacesModel {
   factory NearbyPlacesModel.fromJson(Map<String, dynamic> json) => NearbyPlacesModel(
     name: json['name'] as String?,
     address: json['address'] as String?,
-    rating: json['rating'] as int?,
+    rating: (json['rating'] as num?)?.toDouble(),
     location:
         json['location'] == null
             ? null
