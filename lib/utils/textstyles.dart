@@ -51,6 +51,11 @@ abstract class Styles {
     fontSize: 16,
     fontWeight: FontWeight.w500,
   );
+  static TextStyle styledarkblack16bold = GoogleFonts.poppins(
+    color: Colors.black,
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+  );
   static TextStyle styledarkgrey18bold = GoogleFonts.poppins(
     color: Color(0xff5C5454),
     fontSize: 18,
