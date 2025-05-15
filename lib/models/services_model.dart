@@ -6,7 +6,7 @@ class ServicesModel {
 
 List<ServicesModel> servicesCoulmn1=[
   ServicesModel(image: "assets/images/must_eat.png", serviceName: "restaurant"),
-  ServicesModel(image: "assets/images/car_services.png", serviceName: "gas_station"), //car_repair //car_dealer //car_wash
+  ServicesModel(image: "assets/images/car_services.png", serviceName: "car service"), //car_repair //car_dealer //car_wash
   ServicesModel(image: "assets/images/cafe.png", serviceName: "cafe"),
   ServicesModel(image:  "assets/images/shopping.png", serviceName: "clothing_store"),
   ServicesModel(image: "assets/images/beauty.png", serviceName: "Beauty center")
