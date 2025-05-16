@@ -7,20 +7,25 @@ import 'package:pathly/models/custom_contribute_model.dart';
 class CustomContributeServiceCoulmn extends StatelessWidget {
   const CustomContributeServiceCoulmn({
     required this.contributeModel,
+    required this.onTap,
     super.key,
   });
   final CustomContributeModel contributeModel;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SvgPicture.asset(contributeModel.image),
-        Text(
-          contributeModel.text,
-          style: GoogleFonts.poppins(color: kPrimaryColor, fontSize: 11),
-        ),
-      ],
+    return InkWell(
+      onTap: onTap,
+      child: Column(
+        children: [
+          SvgPicture.asset(contributeModel.image),
+          Text(
+            contributeModel.text,
+            style: GoogleFonts.poppins(color: kPrimaryColor, fontSize: 11),
+          ),
+        ],
+      ),
     );
   }
 }
