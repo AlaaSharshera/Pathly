@@ -1,5 +1,7 @@
 import 'dart:developer';
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:pathly/utils/textstyles.dart';
 import 'package:pathly/widgets/bottom_nav_views_widgets/custom_addphoto_container.dart';
 import 'package:pathly/widgets/bottom_nav_views_widgets/custom_dropdown_button.dart';
@@ -7,6 +9,7 @@ import 'package:pathly/widgets/bottom_nav_views_widgets/custom_report_textfield.
 import 'package:pathly/widgets/bottom_nav_views_widgets/custom_reportlocation_row.dart';
 import 'package:pathly/widgets/payment_widgets/custom_payment_appbar.dart';
 import 'package:pathly/widgets/payment_widgets/custom_payment_button.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class MakeReportView extends StatefulWidget {
   const MakeReportView({super.key});
@@ -17,6 +20,53 @@ class MakeReportView extends StatefulWidget {
 
 class _MakeReportViewState extends State<MakeReportView> {
   String? selectedValue;
+  String? problemDescription;
+  File? imageFile;
+  bool isImageMissing = false;
+
+  AutovalidateMode autovalidateMode=AutovalidateMode.disabled;
+final ImagePicker _picker = ImagePicker();
+
+
+Future<bool> requestPhotoPermission() async {
+  if (Platform.isAndroid) {
+    if (await Permission.photos.isGranted || await Permission.storage.isGranted) {
+      return true;
+    }
+
+
+    if (await Permission.photos.request().isGranted) {
+      return true;
+    }
+
+  
+    if (await Permission.storage.request().isGranted) {
+      return true;
+    }
+
+    return false;
+  }
+
+  final status = await Permission.photos.request();
+  return status.isGranted;
+}
+
+
+Future<void> pickImage() async {
+  bool granted = await requestPhotoPermission();
+if (!granted) {
+    
+    return;
+  }
+  final XFile? pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+
+  if (pickedFile != null) {
+    setState(() {
+      imageFile = File(pickedFile.path);
+    });
+  }
+}
+
 
   final formKey = GlobalKey<FormState>();
   @override
@@ -31,7 +81,7 @@ class _MakeReportViewState extends State<MakeReportView> {
           key: formKey,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Column(
+            child: ListView(
               children: [
                  SizedBox(height: 12,),
                 Align(
@@ -43,6 +93,7 @@ class _MakeReportViewState extends State<MakeReportView> {
                 ),
                 SizedBox(height: 20,),
                 CustomDropdownButton(
+                  autovalidateMode: autovalidateMode,
                   onSaved: (value) {
                     selectedValue = value;
                   },
@@ -54,24 +105,81 @@ class _MakeReportViewState extends State<MakeReportView> {
                   },
                 ),
                 SizedBox(height: 10,),
-                CustomReportTextfield(),
-                 SizedBox(height: 12,),
-                InkWell(
-                  onTap: (){},
-                  child: CustomAddphotoContainer()),
-                 SizedBox(height: 12,),
-                CustomReportLocationRow(),
-                Spacer(flex: 1,),
-                CustomPaymentButton(
-                  buttonText: "Submit Report",
-                  onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      formKey.currentState!.save();
-                      log(selectedValue!);
+                CustomReportTextfield(
+                  autovalidateMode: autovalidateMode,
+                  validator: (value) {
+                    if (value==null||value.isEmpty){
+                      return 'please write the problem';
                     }
+                    return null;
+                  },
+                  onSaved: (value) {
+                    problemDescription=value;
                   },
                 ),
-                 SizedBox(height: 32,),
+                 SizedBox(height: 12,),
+      //           InkWell(
+      //             onTap: ()async
+      //             {
+      //             await  pickImage();
+      //             log(imageFile.toString());
+
+      //             },
+      //             child:  imageFile == null
+      // ? CustomAddphotoContainer()
+      // : Image.file(imageFile!),),
+
+      Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    InkWell(
+      onTap: () async {
+        await pickImage();
+        if (imageFile != null) {
+          setState(() {
+            isImageMissing = false;
+          });
+        }
+      },
+      child: imageFile == null
+          ? CustomAddphotoContainer()
+          : Image.file(imageFile!),
+    ),
+    if (isImageMissing)
+      Padding(
+        padding: const EdgeInsets.only(top: 8.0),
+        child: Text(
+          "Please add a photo.",
+          style: TextStyle(color: Color(0xffB3261E), fontSize: 12),
+        ),
+      ),
+  ],
+),
+
+                 SizedBox(height: 12,),
+                CustomReportLocationRow(),
+                SizedBox(height: imageFile==null?MediaQuery.of(context).size.height*0.1:MediaQuery.of(context).size.height*0.05,),
+                CustomPaymentButton(
+                               buttonText: "Submit Report",
+                               onPressed: () {
+                                autovalidateMode=AutovalidateMode.onUserInteraction;
+                              setState(() {
+                                   isImageMissing = imageFile == null;
+                                
+                              });
+                 if (formKey.currentState!.validate()&& imageFile != null) {
+                   formKey.currentState!.save();
+                   log("validate");
+                   log(selectedValue!);
+                    log(problemDescription!);
+                 }else{
+                  log("not validate");
+                 }
+                               },
+                             ),
+                            
+               
+                 
               ],
             ),
           ),
