@@ -49,7 +49,6 @@ class ContributeView extends StatelessWidget {
                   child: Column(
                     children: [
                       CustomEarnbadgeContainer(),
-
                       CustomContributeListview(),
                       CustomContributeContainer(),
                     ],
