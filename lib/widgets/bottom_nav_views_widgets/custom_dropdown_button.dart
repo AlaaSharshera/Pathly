@@ -4,10 +4,11 @@ import 'package:pathly/constant.dart';
 import 'package:pathly/utils/textstyles.dart';
 
 class CustomDropdownButton extends StatefulWidget {
-  const CustomDropdownButton({required this.validator,required this.onSaved,super.key});
+  const CustomDropdownButton({required this.validator,required this.onSaved,required this.autovalidateMode,super.key});
 
 final String? Function(String?)? validator;
 final void Function(String?)? onSaved;
+final AutovalidateMode? autovalidateMode;
   @override
   State<CustomDropdownButton> createState() => _CustomDropdownButtonState();
 }
@@ -21,6 +22,7 @@ String? selectedValue;
   Widget build(BuildContext context) {
     return  DropdownButtonFormField2<String>(
                isExpanded: true,
+               autovalidateMode: widget.autovalidateMode,
                barrierDismissible: true,
                 decoration: InputDecoration(
                   contentPadding: const EdgeInsets.symmetric(vertical: 8),
@@ -50,7 +52,7 @@ String? selectedValue;
                     .toList(),
                 validator: widget.validator,
                 onChanged: (value) {
-                  //Do something when selected item is changed.
+                
                 },
                 onSaved:widget.onSaved,
                 buttonStyleData: const ButtonStyleData(
