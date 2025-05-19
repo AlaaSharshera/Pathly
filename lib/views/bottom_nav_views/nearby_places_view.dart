@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pathly/constant.dart';
 import 'package:pathly/cubits/get_nearby_places_cubit/get_nearby_places_cubit.dart';
 import 'package:pathly/cubits/get_nearby_places_cubit/get_nearby_places_states.dart';
-import 'package:pathly/utils/textstyles.dart';
 import 'package:pathly/widgets/bottom_nav_views_widgets/nearby_places_container.dart';
 
 class NearbyPlacesView extends StatefulWidget {
@@ -24,6 +24,9 @@ class _NearbyPlacesViewState extends State<NearbyPlacesView> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
+        leading: IconButton(onPressed: (){
+          Get.back();
+        }, icon: Icon(Icons.arrow_back),color: Colors.white,),
         backgroundColor: kPrimaryColor,
         elevation: 1,
         
