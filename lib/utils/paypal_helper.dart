@@ -36,7 +36,12 @@ class PaymentWithPaypal extends StatelessWidget {
         );
         Navigator.pop(context);
         Get.dialog(
-          const PaymentDoneDialog(),
+          CustomDoneDialog(
+            text: "Payment Done Successfully!",
+            onpressed: () {
+              Get.back();
+            },
+          ),
           barrierColor: Colors.black.withOpacity(0.5),
         );
       },

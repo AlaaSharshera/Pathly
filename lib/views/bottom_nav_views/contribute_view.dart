@@ -36,9 +36,12 @@ class ContributeView extends StatelessWidget {
                 children: List.generate(
                   contributesList.length,
                   (index) => CustomContributeServiceCoulmn(
-                    onTap: index==3?(){
-                      Get.to(()=>MakeReportView());
-                    }:(){},
+                    onTap:
+                        index == 3
+                            ? () {
+                              Get.to(() => MakeReportView());
+                            }
+                            : () {},
                     contributeModel: contributesList[index],
                   ),
                 ),

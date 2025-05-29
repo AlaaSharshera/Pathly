@@ -28,7 +28,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
           (context, state) => Scaffold(
             bottomNavigationBar: CurvedNavigationBar(
               key: bottomNavigationKey,
-              index: 0,
+              index: 2,
               height: 65.0,
               items: [
                 CurvedNavigationBarItem(

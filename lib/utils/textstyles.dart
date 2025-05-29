@@ -8,9 +8,13 @@ abstract class Styles {
     fontSize: 12,
   );
 
-  static TextStyle styleWhiteBold16 = GoogleFonts.poppins(
+  static TextStyle styleWhiteBold22 = GoogleFonts.poppins(
     fontSize: 22,
     fontWeight: FontWeight.w600,
+    color: Colors.white,
+  );
+  static TextStyle styleWhite16 = GoogleFonts.poppins(
+    fontSize: 16,
     color: Colors.white,
   );
   static TextStyle stylePrimaryColorbold18 = GoogleFonts.poppins(
@@ -28,10 +32,9 @@ abstract class Styles {
     height: 1.33,
     fontWeight: FontWeight.w500,
   );
-   static TextStyle stylePrimaryColor12 = GoogleFonts.poppins(
+  static TextStyle stylePrimaryColor12 = GoogleFonts.poppins(
     color: kPrimaryColor,
     fontSize: 12,
-  
   );
   static TextStyle styleredbold18 = GoogleFonts.poppins(
     color: Colors.red,
@@ -46,7 +49,7 @@ abstract class Styles {
     color: Color(0xffD1D1D6),
     fontSize: 14,
   );
-   static TextStyle styledarkgrey14 = GoogleFonts.poppins(
+  static TextStyle styledarkgrey14 = GoogleFonts.poppins(
     color: Color(0xff5C5454),
     fontSize: 14,
   );
