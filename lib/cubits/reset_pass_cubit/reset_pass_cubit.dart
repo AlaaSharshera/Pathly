@@ -9,6 +9,7 @@ class ResetPassCubit extends Cubit<ResetPassStates> {
     required String password,
     required String confirmPassword,
   }) async {
+    emit(LoadingResetPassState());
     try {
       String response = await ResetPassService().resetPassService(
         email: email,
