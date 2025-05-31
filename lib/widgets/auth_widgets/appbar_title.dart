@@ -16,7 +16,7 @@ Widget customTitleAppBar({required String title}) {
       ),
       Text(
         title,
-        style: GoogleFonts.poppins(textStyle: Styles.styleWhiteBold16),
+        style: GoogleFonts.poppins(textStyle: Styles.styleWhiteBold22),
       ),
     ],
   );

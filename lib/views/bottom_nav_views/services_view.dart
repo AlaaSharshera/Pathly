@@ -56,31 +56,45 @@ class ServicesView extends StatelessWidget {
                               (index) => InkWell(
                                 onTap: () {
                                   Get.to(
-                                    () =>index==1? BlocProvider<GetNearbyPlacesCubit>(
-                                      create:
-                                          (context) =>
-                                              GetNearbyPlacesCubit()
-                                                ..getCarServiceNearbyPlaces(
-                                                  lat: 31.4355529,
-                                                  lng: 31.6746909,
-                                                 
-                                                ),
-                                      child: NearbyPlacesView(serviceName:servicesCoulmn1[index]
-                                                          .serviceName.replaceAll("_", " ") ,),
-                                    ): BlocProvider<GetNearbyPlacesCubit>(
-                                      create:
-                                          (context) =>
-                                              GetNearbyPlacesCubit()
-                                                ..getNearbyPlaces(
-                                                  lat: 31.4355529,
-                                                  lng: 31.6746909,
-                                                  type:
-                                                      servicesCoulmn1[index]
-                                                          .serviceName,
-                                                ),
-                                      child: NearbyPlacesView(serviceName:servicesCoulmn1[index]
-                                                          .serviceName.replaceAll("_", " ") ,),
-                                    ),
+                                    () =>
+                                        index == 1
+                                            ? BlocProvider<
+                                              GetNearbyPlacesCubit
+                                            >(
+                                              create:
+                                                  (context) =>
+                                                      GetNearbyPlacesCubit()
+                                                        ..getCarServiceNearbyPlaces(
+                                                          lat: 31.4355529,
+                                                          lng: 31.6746909,
+                                                        ),
+                                              child: NearbyPlacesView(
+                                                serviceName:
+                                                    servicesCoulmn1[index]
+                                                        .serviceName
+                                                        .replaceAll("_", " "),
+                                              ),
+                                            )
+                                            : BlocProvider<
+                                              GetNearbyPlacesCubit
+                                            >(
+                                              create:
+                                                  (context) =>
+                                                      GetNearbyPlacesCubit()
+                                                        ..getNearbyPlaces(
+                                                          lat: 31.4355529,
+                                                          lng: 31.6746909,
+                                                          type:
+                                                              servicesCoulmn1[index]
+                                                                  .serviceName,
+                                                        ),
+                                              child: NearbyPlacesView(
+                                                serviceName:
+                                                    servicesCoulmn1[index]
+                                                        .serviceName
+                                                        .replaceAll("_", " "),
+                                              ),
+                                            ),
                                   );
                                 },
                                 child: Padding(
@@ -101,22 +115,27 @@ class ServicesView extends StatelessWidget {
                                   servicesCoulmn2.length,
                                   (index) => InkWell(
                                     onTap: () {
-                                       Get.to(
-                                    () => BlocProvider<GetNearbyPlacesCubit>(
-                                      create:
-                                          (context) =>
-                                              GetNearbyPlacesCubit()
-                                                ..getNearbyPlaces(
-                                                  lat: 31.4355529,
-                                                  lng: 31.6746909,
-                                                  type:
-                                                      servicesCoulmn2[index]
-                                                          .serviceName,
-                                                ),
-                                      child: NearbyPlacesView(serviceName: servicesCoulmn2[index]
-                                                          .serviceName.replaceAll("_", " "),),
-                                    ),
-                                  );
+                                      Get.to(
+                                        () => BlocProvider<
+                                          GetNearbyPlacesCubit
+                                        >(
+                                          create:
+                                              (context) =>
+                                                  GetNearbyPlacesCubit()
+                                                    ..getNearbyPlaces(
+                                                      lat: 31.4355529,
+                                                      lng: 31.6746909,
+                                                      type:
+                                                          servicesCoulmn2[index]
+                                                              .serviceName,
+                                                    ),
+                                          child: NearbyPlacesView(
+                                            serviceName: servicesCoulmn2[index]
+                                                .serviceName
+                                                .replaceAll("_", " "),
+                                          ),
+                                        ),
+                                      );
                                     },
                                     child: Padding(
                                       padding: const EdgeInsets.only(
@@ -131,15 +150,19 @@ class ServicesView extends StatelessWidget {
                                 ),
                               ),
                               InkWell(
-                                onTap: (){
-                                   Get.to(
+                                onTap: () {
+                                  Get.to(
                                     () => BlocProvider<GetNearbyPlacesCubit>(
                                       create:
                                           (context) =>
                                               GetNearbyPlacesCubit()
-                                                ..getAllNearbyPlaces(  lat: 31.4355529,
-                                                  lng: 31.6746909,),
-                                      child: NearbyPlacesView(serviceName: "Place",),
+                                                ..getAllNearbyPlaces(
+                                                  lat: 31.4355529,
+                                                  lng: 31.6746909,
+                                                ),
+                                      child: NearbyPlacesView(
+                                        serviceName: "Place",
+                                      ),
                                     ),
                                   );
                                 },
@@ -163,7 +186,6 @@ class ServicesView extends StatelessWidget {
                           ),
                         ],
                       ),
-                    
                     ],
                   ),
                 ),
