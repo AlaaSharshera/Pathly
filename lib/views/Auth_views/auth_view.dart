@@ -217,7 +217,7 @@ class _AuthViewState extends State<AuthView>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomInset: false,
       body: LayoutBuilder(
         builder: (context, constraints) {
           _logoPositionAnimation = Tween<double>(begin: 0, end: -10).animate(
@@ -271,7 +271,7 @@ class _AuthViewState extends State<AuthView>
                       ),
                     ),
                     child: SingleChildScrollView(
-                      physics: const NeverScrollableScrollPhysics(),
+                     // physics: const NeverScrollableScrollPhysics(),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [

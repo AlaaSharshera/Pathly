@@ -8,6 +8,7 @@ import 'package:pathly/constant.dart';
 import 'package:pathly/cubits/reset_pass_cubit/reset_pass_cubit.dart';
 import 'package:pathly/cubits/reset_pass_cubit/reset_pass_states.dart';
 import 'package:pathly/utils/validators.dart';
+import 'package:pathly/views/Auth_views/auth_view.dart';
 import 'package:pathly/widgets/auth_widgets/auth_button.dart';
 import 'package:pathly/widgets/auth_widgets/auth_textfield.dart';
 import 'package:pathly/widgets/auth_widgets/auth_textfield_label.dart';
@@ -27,6 +28,8 @@ class _SetpassViewState extends State<SetpassView> {
   String? confirmPass;
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  bool obscureText1 = true;
+  bool obscureText2 = true;
 
   @override
   Widget build(BuildContext context) {
@@ -42,11 +45,9 @@ class _SetpassViewState extends State<SetpassView> {
             );
           } else if (state is SuccessResetPassState) {
             Get.back();
-            ScaffoldMessenger.of(
-              context,
-            ).showSnackBar(SnackBar(content: Text(state.response)));
+            Get.dialog(customAlertDialog());
+            // Get.back();
           } else if (state is FailureResetPassState) {
-            Get.back();
             ScaffoldMessenger.of(
               context,
             ).showSnackBar(SnackBar(content: Text(state.errMessage)));
@@ -63,6 +64,17 @@ class _SetpassViewState extends State<SetpassView> {
                 ),
                 AuthlabelTextField(text: "Enter new password"),
                 AuthTextField(
+                  obscureText: obscureText1,
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      obscureText1 = !obscureText1;
+                      setState(() {});
+                    },
+                    icon:
+                        obscureText1
+                            ? Icon(Icons.visibility_off)
+                            : Icon(Icons.visibility),
+                  ),
                   autovalidateMode: autovalidateMode,
                   hintText: "",
                   onSaved: (value) {
@@ -80,6 +92,17 @@ class _SetpassViewState extends State<SetpassView> {
                 const SizedBox(height: 50),
                 AuthlabelTextField(text: "Confirm password"),
                 AuthTextField(
+                  obscureText: obscureText2,
+                  suffixIcon: IconButton(
+                    onPressed: () {
+                      obscureText2 = !obscureText2;
+                      setState(() {});
+                    },
+                    icon:
+                        obscureText2
+                            ? Icon(Icons.visibility_off)
+                            : Icon(Icons.visibility),
+                  ),
                   autovalidateMode: autovalidateMode,
                   hintText: "",
                   validator: (value) {
@@ -110,7 +133,10 @@ class _SetpassViewState extends State<SetpassView> {
                         );
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text("Pass doesn't match")),
+                          SnackBar(
+                            content: Text("Passworsd doesn't match"),
+                            backgroundColor: kPrimaryColor,
+                          ),
                         );
                       }
                     }
@@ -146,7 +172,13 @@ Widget customAlertDialog() {
           ),
         ),
         const SizedBox(height: 32),
-        AuthButton(buttonText: "Sign in", onPressed: () {}),
+
+        AuthButton(
+          buttonText: "Sign in",
+          onPressed: () {
+            Get.to(() => const AuthView(startWithSignup: false));
+          },
+        ),
       ],
     ),
   );

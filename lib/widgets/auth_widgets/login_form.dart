@@ -5,9 +5,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pathly/constant.dart';
+import 'package:pathly/cubits/botton_navbar_cubit.dart/bottom_navbar_cubit.dart';
 import 'package:pathly/cubits/login_cubit/login_cubit.dart';
 import 'package:pathly/cubits/login_cubit/login_states.dart';
 import 'package:pathly/utils/validators.dart';
+import 'package:pathly/views/bottom_nav_views/bottom_navbar.dart';
 import 'package:pathly/widgets/auth_widgets/auth_button.dart';
 import 'package:pathly/widgets/auth_widgets/auth_center_text.dart';
 import 'package:pathly/widgets/auth_widgets/auth_options_row.dart';
@@ -29,6 +31,7 @@ class _CustomLoginFormState extends State<CustomLoginForm> {
   String? email;
 
   String? pass;
+  bool obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +94,17 @@ class _CustomLoginFormState extends State<CustomLoginForm> {
             AuthTextField(
               hintText: "••••••••••••••••••",
               autovalidateMode: autovalidateMode,
-              obscureText: true,
+              obscureText: obscureText,
+              suffixIcon: IconButton(
+                onPressed: () {
+                  obscureText = !obscureText;
+                  setState(() {});
+                },
+                icon:
+                    obscureText
+                        ? Icon(Icons.visibility_off)
+                        : Icon(Icons.visibility),
+              ),
               onSaved: (value) {
                 pass = value;
               },
@@ -119,6 +132,12 @@ class _CustomLoginFormState extends State<CustomLoginForm> {
                     context.read<LoginCubit>().loginService(
                       email: email!,
                       password: pass!,
+                    );
+                    Get.offAll(
+                      () => BlocProvider<BottomNavbarCubit>(
+                        create: (context) => BottomNavbarCubit(),
+                        child: BottomNavbar(),
+                      ),
                     );
                   } catch (e) {
                     throw Exception("Cubit failed");
