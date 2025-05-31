@@ -10,7 +10,7 @@ import 'package:pathly/widgets/bottom_nav_views_widgets/nearby_places_container.
 class NearbyPlacesView extends StatefulWidget {
   final String serviceName;
 
-  const NearbyPlacesView({required this.serviceName,super.key});
+  const NearbyPlacesView({required this.serviceName, super.key});
 
   @override
   State<NearbyPlacesView> createState() => _NearbyPlacesViewState();
@@ -24,51 +24,61 @@ class _NearbyPlacesViewState extends State<NearbyPlacesView> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        leading: IconButton(onPressed: (){
-          Get.back();
-        }, icon: Icon(Icons.arrow_back),color: Colors.white,),
+        leading: IconButton(
+          onPressed: () {
+            Get.back();
+          },
+          icon: Icon(Icons.arrow_back),
+          color: Colors.white,
+        ),
         backgroundColor: kPrimaryColor,
         elevation: 1,
-        
-        title: Text("${widget.serviceName}s", style: GoogleFonts.poppins(color: Colors.white,fontSize: 18)),
+
+        title: Text(
+          "${widget.serviceName}s",
+          style: GoogleFonts.poppins(color: Colors.white, fontSize: 18),
+        ),
       ),
-      body: BlocBuilder<GetNearbyPlacesCubit,GetNearbyPlacesStates>(builder: (context,state){
-        if (state is LoadingNearbyPlacesState){
- return Center(
-                      child: CircularProgressIndicator(
-                        color: kPrimaryColor,
-                        padding: EdgeInsets.all(20),
-                      ),
-                    );
-        }else if (state is LoadedNearbyPlacesState){
-return ListView.separated(
-        itemCount: state.nearbyPlaces.length,
-          itemBuilder:
-            (context, index) => InkWell(
-              onTap: () async {
-                selectedIndex = index;
+      body: BlocBuilder<GetNearbyPlacesCubit, GetNearbyPlacesStates>(
+        builder: (context, state) {
+          if (state is LoadingNearbyPlacesState) {
+            return Center(
+              child: CircularProgressIndicator(
+                color: kPrimaryColor,
+                padding: EdgeInsets.all(20),
+              ),
+            );
+          } else if (state is LoadedNearbyPlacesState) {
+            return ListView.separated(
+              itemCount: state.nearbyPlaces.length,
+              itemBuilder:
+                  (context, index) => InkWell(
+                    onTap: () async {
+                      selectedIndex = index;
 
-                setState(() {});
-              },
-              child: NearbyPlacesContainer(isActive: selectedIndex == index,nearbyPlacesModel: state.nearbyPlaces[index]),
-            ),
-            separatorBuilder: (context, index) => Divider(
-              color: kPrimaryColor,
-              thickness: 0.5,
-              height: 1,
-              indent: 15,
-              endIndent: 15,
-
-            ),
-      
-      );
-        }else if (state is FailureNearbyPlacesState){
-          return Text(state.errMessage);
-        }
-        else{
-          return SizedBox();
-        }
-      })
+                      setState(() {});
+                    },
+                    child: NearbyPlacesContainer(
+                      isActive: selectedIndex == index,
+                      nearbyPlacesModel: state.nearbyPlaces[index],
+                    ),
+                  ),
+              separatorBuilder:
+                  (context, index) => Divider(
+                    color: kPrimaryColor,
+                    thickness: 0.5,
+                    height: 1,
+                    indent: 15,
+                    endIndent: 15,
+                  ),
+            );
+          } else if (state is FailureNearbyPlacesState) {
+            return Text(state.errMessage);
+          } else {
+            return SizedBox();
+          }
+        },
+      ),
     );
   }
 }

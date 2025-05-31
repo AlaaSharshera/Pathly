@@ -123,7 +123,12 @@ class _ChoosePaymentPlanViewState extends State<ChoosePaymentPlanView> {
                                     "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzIiwianRpIjoiOTYyODRkZWItNWFlMS00MTAxLWEwYjktODUxZDUyMWYyMjc3IiwiZW1haWwiOiJhbGFhc0BnbWFpbC5jb20iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjMiLCJpc0FkbWluIjoiVHJ1ZSIsImV4cCI6MTc0ODI5NDYwNywiaXNzIjoiU2VjdXJlQXBpIiwiYXVkIjoiU2VjdXJlQXBpVXNlciJ9.GASG3PN9w9F-07kME1R7dkdcqIVcL9wEoPjBOMnQHPo",
                               );
                               Get.dialog(
-                                const PaymentDoneDialog(),
+                                CustomDoneDialog(
+                                  text: "Payment Done Successfully!",
+                                  onpressed: () {
+                                    Get.back();
+                                  },
+                                ),
                                 barrierColor: Colors.black.withOpacity(0.5),
                               );
                             }
