@@ -1,28 +1,45 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:pathly/constant.dart';
 import 'package:pathly/utils/textstyles.dart';
 
 class CustomContributeSearchTextField extends StatelessWidget {
-  const CustomContributeSearchTextField({required this.color, super.key});
+  const CustomContributeSearchTextField({
+    required this.color,
+    required this.onTap,
+    super.key,
+  });
   final Color color;
+  final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 300,
-      height: 50,
-      padding: EdgeInsets.symmetric(vertical: 14),
-      decoration: BoxDecoration(
-        color: color,
-        borderRadius: BorderRadius.circular(16),
-      ),
-      child: TextFormField(
-        decoration: InputDecoration(
-          hintText: "Where to go?",
-          hintStyle: Styles.stylegrey16,
-          border: InputBorder.none,
-          suffixIcon: SvgPicture.asset("assets/icons/voice_search.svg"),
-          prefixIcon: SvgPicture.asset("assets/icons/search_icon.svg"),
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: 300,
+        height: 45,
+        padding: EdgeInsets.symmetric(vertical: 8),
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(16),
+        ),
+        child: Row(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: SvgPicture.asset("assets/icons/search_icon.svg"),
+            ),
+            Text("Where to go?", style: Styles.stylegrey16),
+            Spacer(),
+            Padding(
+              padding: const EdgeInsets.only(right: 12.0),
+              child: SvgPicture.asset(
+                "assets/icons/voice.svg",
+                color: kPrimaryColor,
+              ),
+            ),
+          ],
         ),
       ),
     );
