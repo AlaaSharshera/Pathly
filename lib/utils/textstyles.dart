@@ -57,6 +57,10 @@ abstract class Styles {
     color: Color(0xff999999),
     fontSize: 16,
   );
+  static TextStyle styleMediamgrey14 = GoogleFonts.poppins(
+    color: Color(0xff999999),
+    fontSize: 14,
+  );
   static TextStyle styledarkgrey16bold = GoogleFonts.poppins(
     color: Color(0xff5C5454),
     fontSize: 16,
