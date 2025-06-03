@@ -28,6 +28,8 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>this app require permission to display your currunt location</string>
 	<key>NSPhotoLibraryUsageDescription</key>
     <string>We need access to your gallery to upload photo</string>
 	<key>UISupportedInterfaceOrientations</key>
