@@ -8,8 +8,18 @@ import 'package:pathly/widgets/bottom_nav_views_widgets/custom_contribute_servic
 import 'package:pathly/widgets/bottom_nav_views_widgets/custom_earnbadge_container.dart';
 import 'package:pathly/widgets/bottom_nav_views_widgets/make_report_view.dart';
 
-class ContributeView extends StatelessWidget {
+class ContributeView extends StatefulWidget {
   const ContributeView({super.key});
+
+  @override
+  State<ContributeView> createState() => _ContributeViewState();
+}
+
+class _ContributeViewState extends State<ContributeView> {
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +36,10 @@ class ContributeView extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    CustomContributeSearchTextField(color: Color(0xffE2EBF2)),
+                    CustomContributeSearchTextField(
+                      color: Color(0xffE2EBF2),
+                      onTap: () {},
+                    ),
                     Image.asset("assets/images/profile.png", width: 38),
                   ],
                 ),

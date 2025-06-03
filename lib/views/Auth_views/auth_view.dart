@@ -271,7 +271,7 @@ class _AuthViewState extends State<AuthView>
                       ),
                     ),
                     child: SingleChildScrollView(
-                     // physics: const NeverScrollableScrollPhysics(),
+                      // physics: const NeverScrollableScrollPhysics(),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
