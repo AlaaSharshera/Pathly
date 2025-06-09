@@ -9,10 +9,7 @@ class MakeReportService {
 
   Future<File> compressImage(File file) async {
     final image = img.decodeImage(await file.readAsBytes())!;
-    final compressedImage = img.copyResize(
-      image,
-      width: 800,
-    ); 
+    final compressedImage = img.copyResize(image, width: 800);
     final tempDir = await Directory.systemTemp.createTemp();
     final compressedFile = File('${tempDir.path}/${file.path.split('/').last}');
     await compressedFile.writeAsBytes(
