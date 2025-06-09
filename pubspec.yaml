@@ -42,6 +42,7 @@ dependencies:
   flutter_bloc: ^9.1.0
   flutter_otp_text_field: ^1.1.0+2
   flutter_paypal_payment: ^1.0.8
+  flutter_polyline_points: ^2.1.0
   flutter_rating_bar: ^4.0.1
   flutter_screenutil: ^5.9.3
   flutter_stripe: ^9.4.0
