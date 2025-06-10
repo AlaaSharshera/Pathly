@@ -17,7 +17,7 @@ class CustomContributeSearchTextField extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 300,
+        width: 290,
         height: 45,
         padding: EdgeInsets.symmetric(vertical: 8),
         decoration: BoxDecoration(

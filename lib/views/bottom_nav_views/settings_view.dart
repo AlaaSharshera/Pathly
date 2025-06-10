@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pathly/utils/textstyles.dart';
+import 'package:pathly/views/payment_views/trips_details_view.dart';
 import 'package:pathly/widgets/bottom_nav_views_widgets/custom_settings_textbutton.dart';
 import 'package:pathly/widgets/general_widgets/custom_switch_icon.dart';
 
@@ -30,7 +32,9 @@ class SettingsView extends StatelessWidget {
                   text: "Offline map settings",
                 ),
                 CustomSettingsTextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(() => TripsDetailsView());
+                  },
                   text: "Manage subscription",
                 ),
                 Row(
