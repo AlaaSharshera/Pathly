@@ -68,11 +68,7 @@ class _MakeReportViewState extends State<MakeReportView> {
     if (pickedFile == null) return;
 
     fileExtension = pickedFile.path.split('.').last.toLowerCase();
-    final allowedExtensions = [
-      'jpg',
-      'jpeg',
-      'png',
-    ]; 
+    final allowedExtensions = ['jpg', 'jpeg', 'png'];
 
     if (!allowedExtensions.contains(fileExtension)) {
       ScaffoldMessenger.of(context).showSnackBar(
