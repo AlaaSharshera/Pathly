@@ -8,11 +8,10 @@ class CreatePaymentService {
     required int palnId,
   }) async {
     FormData formData = FormData.fromMap({'subscriptionPlanId': palnId});
-    var response = await Api().post(
+    var response = await Api().postRequest(
       url: "https://pathly.runasp.net/api/Payment/create",
       token: token,
       body: formData,
-      contentType: null,
     );
     log("succes $palnId");
     return response;
