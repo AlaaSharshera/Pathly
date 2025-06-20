@@ -6,7 +6,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pathly/constant.dart';
-import 'package:pathly/cubits/botton_navbar_cubit.dart/bottom_navbar_cubit.dart';
+import 'package:pathly/cubits/botton_navbar_cubit/bottom_navbar_cubit.dart';
 import 'package:pathly/services/report_service.dart';
 import 'package:pathly/utils/textstyles.dart';
 import 'package:pathly/views/bottom_nav_views/bottom_navbar.dart';
@@ -128,6 +128,7 @@ class _MakeReportViewState extends State<MakeReportView> {
                 ),
                 SizedBox(height: 10),
                 CustomReportTextfield(
+                  
                   onFieldSubmitted: (_) {
                     FocusScope.of(context).unfocus();
                   },
@@ -204,7 +205,7 @@ class _MakeReportViewState extends State<MakeReportView> {
                             ),
                       );
                       log("validate");
-                      log(selectedValue!);
+                  
                       log(problemDescription!);
                       log(imageFile.toString());
                       try {
