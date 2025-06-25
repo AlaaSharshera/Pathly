@@ -3,9 +3,14 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pathly/constant.dart';
 
-class PaymentDoneDialog extends StatelessWidget {
-  const PaymentDoneDialog({super.key});
-
+class CustomDoneDialog extends StatelessWidget {
+  const CustomDoneDialog({
+    required this.text,
+    required this.onpressed,
+    super.key,
+  });
+  final String text;
+  final VoidCallback onpressed;
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -28,7 +33,7 @@ class PaymentDoneDialog extends StatelessWidget {
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
                   textAlign: TextAlign.center,
-                  "Payment Done Successfully!",
+                  text,
                   style: GoogleFonts.poppins(
                     fontSize: 20,
                     color: kPrimaryColor,
@@ -40,9 +45,7 @@ class PaymentDoneDialog extends StatelessWidget {
                 style: ButtonStyle(
                   backgroundColor: WidgetStatePropertyAll(kPrimaryColor),
                 ),
-                onPressed: () {
-                  Get.back();
-                },
+                onPressed: onpressed,
                 child: Text(
                   "Done",
                   style: GoogleFonts.poppins(
