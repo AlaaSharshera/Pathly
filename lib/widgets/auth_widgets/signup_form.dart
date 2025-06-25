@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pathly/constant.dart';
-import 'package:pathly/cubits/botton_navbar_cubit.dart/bottom_navbar_cubit.dart';
+import 'package:pathly/cubits/botton_navbar_cubit/bottom_navbar_cubit.dart';
 import 'package:pathly/cubits/signup_cubit/signup_cubit.dart';
 import 'package:pathly/cubits/signup_cubit/signup_states.dart';
 import 'package:pathly/utils/textstyles.dart';
@@ -48,7 +48,7 @@ class _CustomSignupFormState extends State<CustomSignupForm> {
           log(state.authResponseModel.token);
           ScaffoldMessenger.of(
             context,
-          ).showSnackBar(SnackBar(content: Text("Register Successfully")));
+          ).showSnackBar(SnackBar(content: Text("Register Successfully"),backgroundColor: kPrimaryColor,));
           Get.offAll(
             BlocProvider<BottomNavbarCubit>(
               create: (context) => BottomNavbarCubit(),

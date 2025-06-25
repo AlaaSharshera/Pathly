@@ -34,7 +34,7 @@ class AuthTextField extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 16.w),
       child: TextFormField(
         onSaved: onSaved,
-
+cursorColor: kPrimaryColor,
         obscureText: obscureText,
         validator: validator,
         obscuringCharacter: '•',
