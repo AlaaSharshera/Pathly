@@ -5,7 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pathly/constant.dart';
-import 'package:pathly/cubits/botton_navbar_cubit.dart/bottom_navbar_cubit.dart';
+import 'package:pathly/cubits/botton_navbar_cubit/bottom_navbar_cubit.dart';
 import 'package:pathly/views/bottom_nav_views/contribute_view.dart';
 import 'package:pathly/views/bottom_nav_views/googlemaps_view.dart';
 import 'package:pathly/views/bottom_nav_views/profile_view.dart';

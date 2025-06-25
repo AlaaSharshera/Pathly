@@ -5,7 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pathly/constant.dart';
-import 'package:pathly/cubits/botton_navbar_cubit.dart/bottom_navbar_cubit.dart';
+import 'package:pathly/cubits/botton_navbar_cubit/bottom_navbar_cubit.dart';
 import 'package:pathly/cubits/login_cubit/login_cubit.dart';
 import 'package:pathly/cubits/login_cubit/login_states.dart';
 import 'package:pathly/utils/validators.dart';

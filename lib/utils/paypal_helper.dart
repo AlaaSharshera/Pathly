@@ -1,8 +1,12 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_paypal_payment/flutter_paypal_payment.dart';
 import 'package:get/get.dart';
+import 'package:pathly/constant.dart';
+import 'package:pathly/cubits/botton_navbar_cubit/bottom_navbar_cubit.dart';
 import 'package:pathly/services/create_payment_service.dart';
+import 'package:pathly/views/bottom_nav_views/bottom_navbar.dart';
 import 'package:pathly/widgets/payment_widgets/paymentdone_dialog.dart';
 
 class PaymentWithPaypal extends StatelessWidget {
@@ -17,6 +21,7 @@ class PaymentWithPaypal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PaypalCheckoutView(
+      loadingIndicator: CircularProgressIndicator(color: kPrimaryColor,),
       sandboxMode: true,
       clientId:
           "ARpxrThvaXprmnEe-CtdLjIcmL8SztRzUBuncZd7pFfVzU-zhHGKK7ZYnrBu3qVx-EUMmq1XKh3HBvgN",
@@ -32,14 +37,19 @@ class PaymentWithPaypal extends StatelessWidget {
         await CreatePaymentService().createPaymentService(
           palnId: planId,
           token:
-              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIzIiwianRpIjoiOTYyODRkZWItNWFlMS00MTAxLWEwYjktODUxZDUyMWYyMjc3IiwiZW1haWwiOiJhbGFhc0BnbWFpbC5jb20iLCJodHRwOi8vc2NoZW1hcy54bWxzb2FwLm9yZy93cy8yMDA1LzA1L2lkZW50aXR5L2NsYWltcy9uYW1laWRlbnRpZmllciI6IjMiLCJpc0FkbWluIjoiVHJ1ZSIsImV4cCI6MTc0ODI5NDYwNywiaXNzIjoiU2VjdXJlQXBpIiwiYXVkIjoiU2VjdXJlQXBpVXNlciJ9.GASG3PN9w9F-07kME1R7dkdcqIVcL9wEoPjBOMnQHPo",
+              "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxNyIsImp0aSI6IjBjYWU1NzgwLWVkZDUtNGY0OS04NDI1LWUyNmM1YWE1ZjBmOSIsImVtYWlsIjoidGVzdEBleGFtcGxlLmNvbSIsImh0dHA6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL25hbWVpZGVudGlmaWVyIjoiMTciLCJpc0FkbWluIjoiRmFsc2UiLCJleHAiOjE3NTIxNDU0ODgsImlzcyI6IlNlY3VyZUFwaSIsImF1ZCI6IlNlY3VyZUFwaVVzZXIifQ.b4lyjBAojwpBblYCrmc7Ipxql1lq-5C0aymLz4oJkwU",
         );
         Navigator.pop(context);
         Get.dialog(
           CustomDoneDialog(
             text: "Payment Done Successfully!",
             onpressed: () {
-              Get.back();
+              Get.offAll(
+                () => BlocProvider<BottomNavbarCubit>(
+                  create: (context) => BottomNavbarCubit(),
+                  child: BottomNavbar(),
+                ),
+              );
             },
           ),
           barrierColor: Colors.black.withOpacity(0.5),
