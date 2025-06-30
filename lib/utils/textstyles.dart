@@ -32,6 +32,11 @@ abstract class Styles {
     height: 1.33,
     fontWeight: FontWeight.w500,
   );
+  static TextStyle stylePrimaryColor10 = GoogleFonts.poppins(
+    color: kPrimaryColor,
+    fontSize: 10,
+    fontWeight: FontWeight.w500,
+  );
   static TextStyle stylePrimaryColor12 = GoogleFonts.poppins(
     color: kPrimaryColor,
     fontSize: 12,
