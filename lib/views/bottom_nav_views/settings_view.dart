@@ -68,7 +68,7 @@ class SettingsView extends StatelessWidget {
                           style: GoogleFonts.poppins(
                             height: 1,
                             color: Color(0xff999999),
-      
+
                             fontSize: 14,
                           ),
                         ),
@@ -131,7 +131,7 @@ class SettingsView extends StatelessWidget {
                           style: GoogleFonts.poppins(
                             height: 1,
                             color: Color(0xff999999),
-      
+
                             fontSize: 14,
                           ),
                         ),
@@ -143,7 +143,10 @@ class SettingsView extends StatelessWidget {
                     text: "Your Vehicles",
                   ),
                   CustomSettingsTextButton(onPressed: () {}, text: "Chat"),
-                  CustomSettingsTextButton(onPressed: () {}, text: "Navigation"),
+                  CustomSettingsTextButton(
+                    onPressed: () {},
+                    text: "Navigation",
+                  ),
                   CustomSettingsTextButton(
                     onPressed: () {},
                     text: "Manage your prefernces",
