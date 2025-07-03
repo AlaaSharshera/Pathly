@@ -6,11 +6,15 @@ import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pathly/constant.dart';
 import 'package:pathly/cubits/botton_navbar_cubit/bottom_navbar_cubit.dart';
+import 'package:pathly/cubits/map_details_cubit/map_details_cubit.dart';
+import 'package:pathly/cubits/map_type_cubit/map_type_cubit.dart';
 import 'package:pathly/views/bottom_nav_views/contribute_view.dart';
 import 'package:pathly/views/bottom_nav_views/googlemaps_view.dart';
+import 'package:pathly/views/bottom_nav_views/home_view.dart';
 import 'package:pathly/views/bottom_nav_views/profile_view.dart';
 import 'package:pathly/views/bottom_nav_views/services_view.dart';
 import 'package:pathly/views/bottom_nav_views/settings_view.dart';
+
 
 class BottomNavbar extends StatefulWidget {
   const BottomNavbar({super.key});
@@ -111,7 +115,13 @@ class _BottomNavbarState extends State<BottomNavbar> {
 final views = [
   ServicesView(),
   ContributeView(),
-  GooglemapsView(),
+  MultiBlocProvider(
+              providers: [
+                BlocProvider<MapDetailsCubit>(
+                  create: (context) => MapDetailsCubit(),
+                ),
+                BlocProvider<MapTypeCubit>(create: (context) => MapTypeCubit()),
+              ],child: HomeView()),
   ProfileView(),
   SettingsView(),
 ];
