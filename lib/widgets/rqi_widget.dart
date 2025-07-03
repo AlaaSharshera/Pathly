@@ -24,6 +24,7 @@ class RqiWidget extends StatelessWidget {
                 top: 5,
                 bottom: 5,
                 child: Column(
+                  
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
             
                   children: [

@@ -3,11 +3,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:pathly/constant.dart';
 
 class DirectionButton extends StatelessWidget {
-  const DirectionButton({
-    required this.onTap,
-    super.key,
-  });
-final VoidCallback onTap;
+  const DirectionButton({required this.onTap, super.key});
+  final VoidCallback onTap;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
