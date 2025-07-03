@@ -1,14 +1,14 @@
 import 'leg.dart';
 import 'polyline.dart';
 
-class Route {
+class RouteModel {
   List<Leg>? legs;
   int? distanceMeters;
   String? duration;
   Polyline? polyline;
   List<dynamic>? routeLabels;
 
-  Route({
+  RouteModel({
     this.legs,
     this.distanceMeters,
     this.duration,
@@ -16,7 +16,7 @@ class Route {
     this.routeLabels,
   });
 
-  factory Route.fromJson(Map<String, dynamic> json) => Route(
+  factory RouteModel.fromJson(Map<String, dynamic> json) => RouteModel(
     legs:
         (json['legs'] as List<dynamic>?)
             ?.map((e) => Leg.fromJson(e as Map<String, dynamic>))
