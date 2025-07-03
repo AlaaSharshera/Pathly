@@ -7,6 +7,11 @@ abstract class Styles {
     color: Color(0xff989393),
     fontSize: 12,
   );
+  static TextStyle distanceFont=GoogleFonts.poppins(
+    fontSize: 16,
+    fontWeight: FontWeight.w600,
+    color: Color(0xffA8A8A9),
+  );
 
   static TextStyle styleWhiteBold22 = GoogleFonts.poppins(
     fontSize: 22,
