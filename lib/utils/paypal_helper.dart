@@ -21,7 +21,7 @@ class PaymentWithPaypal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PaypalCheckoutView(
-      loadingIndicator: CircularProgressIndicator(color: kPrimaryColor,),
+      loadingIndicator: CircularProgressIndicator(color: kPrimaryColor),
       sandboxMode: true,
       clientId:
           "ARpxrThvaXprmnEe-CtdLjIcmL8SztRzUBuncZd7pFfVzU-zhHGKK7ZYnrBu3qVx-EUMmq1XKh3HBvgN",
