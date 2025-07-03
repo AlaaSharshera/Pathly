@@ -1,7 +1,7 @@
 import 'route.dart';
 
 class FullRoutesDataModel {
-  List<Route>? routes;
+  List<RouteModel>? routes;
 
   FullRoutesDataModel({this.routes});
 
@@ -9,7 +9,7 @@ class FullRoutesDataModel {
     return FullRoutesDataModel(
       routes:
           (json['routes'] as List<dynamic>?)
-              ?.map((e) => Route.fromJson(e as Map<String, dynamic>))
+              ?.map((e) => RouteModel.fromJson(e as Map<String, dynamic>))
               .toList(),
     );
   }
