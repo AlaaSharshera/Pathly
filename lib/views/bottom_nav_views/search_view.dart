@@ -1,20 +1,26 @@
 import 'dart:async';
 import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:pathly/constant.dart';
+import 'package:pathly/cubits/filter_cubit.dart';
 import 'package:pathly/models/places_auto_complete_model/places_auto_complete.dart';
 import 'package:pathly/models/places_details/places_details_model.dart';
 import 'package:pathly/services/google_maps_places_service.dart';
 import 'package:pathly/utils/textstyles.dart';
+import 'package:pathly/views/bottom_nav_views/show_route_view.dart';
+import 'package:pathly/widgets/filter_dialog.dart';
 import 'package:uuid/uuid.dart';
 
-class SearchView extends StatefulWidget {
-  const SearchView({super.key, required this.onLocationSelected});
-  final Function(PlacesDetailsModel) onLocationSelected;
 
+class SearchView extends StatefulWidget {
+  const SearchView({super.key, required this.onLocationSelected,required this.originLocation});
+  final Function(PlacesDetailsModel) onLocationSelected;
+final LatLng originLocation;
   @override
   State<SearchView> createState() => _SearchViewState();
 }
@@ -27,6 +33,8 @@ class _SearchViewState extends State<SearchView> {
   String? sessiontoken;
   bool _isLoading = false;
   Timer? _debounce;
+  bool selected = true;
+  String selectedFilter="";
 
   @override
   void initState() {
@@ -75,7 +83,7 @@ class _SearchViewState extends State<SearchView> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
+      child:Scaffold(
         backgroundColor: Colors.white,
         body: Stack(
           children: [
@@ -108,21 +116,57 @@ class _SearchViewState extends State<SearchView> {
                           border: InputBorder.none,
                           suffixIcon: Padding(
                             padding: const EdgeInsets.all(10.0),
-                            child: SvgPicture.asset(
-                              "assets/icons/voice.svg",
-                              color: const Color(0xff5C5454),
+                            child: GestureDetector(
+                              onTap: () {
+                                log(selectedFilter);
+                              },
+                              child: SvgPicture.asset(
+                                "assets/icons/voice.svg",
+                                color: const Color(0xff5C5454),
+                              ),
                             ),
                           ),
                         ),
                       ),
                     ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: SvgPicture.asset(
-                        "assets/icons/mage_filter-fill.svg",
-                        color: const Color(0xff5C5454),
-                      ),
-                    ),
+              IconButton(
+  onPressed: () {
+      final filtercontext = context;
+    showDialog(
+      context: context,
+      builder: (context) =>  BlocBuilder<FilterCubit,String>(
+         bloc:
+       filtercontext.read<FilterCubit>(),
+        builder: (context,state)=>AlertDialog(
+          backgroundColor: Colors.transparent,
+          insetPadding: EdgeInsets.zero,
+          content: FilterDialog(
+           applyFilter: () {
+             selectedFilter=state;
+             navigator!.pop(context);
+           },
+           cancel: () {
+                  filtercontext.read<FilterCubit>().chooseFilter(selectedFilter);
+             navigator!.pop(context);
+            
+           },
+           groupedValue:  state,
+            selectedFilter: (value) {
+             
+              filtercontext.read<FilterCubit>().chooseFilter(value);
+             
+              
+            },
+          ),
+        ),)
+    );
+  },
+  icon: SvgPicture.asset(
+    "assets/icons/mage_filter-fill.svg",
+    color: const Color(0xff5C5454),
+  ),
+)
+
                   ],
                 ),
                 SizedBox(
@@ -218,7 +262,8 @@ class _SearchViewState extends State<SearchView> {
                                     );
                                 sessiontoken = null;
                                 widget.onLocationSelected(details);
-                                Get.back();
+                              //  Get.back();
+                              Get.to(()=>ShowRouteView(placesDetailsModel: details,filterType:selectedFilter ,originLocation: widget.originLocation,));
                               } catch (e) {
                                 log("Error: $e");
                                 Get.snackbar(
@@ -324,3 +369,5 @@ class CustomContainer extends StatelessWidget {
     );
   }
 }
+
+
