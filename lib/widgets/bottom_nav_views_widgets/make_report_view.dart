@@ -2,7 +2,6 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:pathly/constant.dart';
@@ -128,7 +127,6 @@ class _MakeReportViewState extends State<MakeReportView> {
                 ),
                 SizedBox(height: 10),
                 CustomReportTextfield(
-                  
                   onFieldSubmitted: (_) {
                     FocusScope.of(context).unfocus();
                   },
@@ -205,7 +203,7 @@ class _MakeReportViewState extends State<MakeReportView> {
                             ),
                       );
                       log("validate");
-                  
+
                       log(problemDescription!);
                       log(imageFile.toString());
                       try {

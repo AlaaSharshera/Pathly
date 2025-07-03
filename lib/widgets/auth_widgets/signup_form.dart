@@ -46,9 +46,12 @@ class _CustomSignupFormState extends State<CustomSignupForm> {
         } else if (state is SuccessSignupState) {
           Get.back();
           log(state.authResponseModel.token);
-          ScaffoldMessenger.of(
-            context,
-          ).showSnackBar(SnackBar(content: Text("Register Successfully"),backgroundColor: kPrimaryColor,));
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text("Register Successfully"),
+              backgroundColor: kPrimaryColor,
+            ),
+          );
           Get.offAll(
             BlocProvider<BottomNavbarCubit>(
               create: (context) => BottomNavbarCubit(),
