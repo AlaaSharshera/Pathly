@@ -40,7 +40,7 @@ final String instruction;
               child: Image.asset( instructionImage,color: Colors.white,),
             )  ,          
             SizedBox(width: 12),
-            Text(instruction, style: Styles.styleWhiteBold22),
+            Expanded(child: Text(instruction, style: Styles.styleWhiteBold22)),
           ],
         ),
       ),
