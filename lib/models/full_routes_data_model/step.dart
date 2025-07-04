@@ -1,13 +1,13 @@
 import 'navigation_instruction.dart';
 
-class Step {
+class StepModel {
   int? distanceMeters;
   String? staticDuration;
   NavigationInstruction? navigationInstruction;
 
-  Step({this.distanceMeters, this.staticDuration, this.navigationInstruction});
+  StepModel({this.distanceMeters, this.staticDuration, this.navigationInstruction});
 
-  factory Step.fromJson(Map<String, dynamic> json) => Step(
+  factory StepModel.fromJson(Map<String, dynamic> json) => StepModel(
     distanceMeters: json['distanceMeters'] as int?,
     staticDuration: json['staticDuration'] as String?,
     navigationInstruction:
