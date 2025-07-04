@@ -19,8 +19,6 @@ import 'package:pathly/models/places_details/places_details_model.dart';
 import 'package:pathly/models/road_condition/road_condition.dart';
 import 'package:pathly/services/fetch_routes_service_class.dart';
 import 'package:pathly/services/google_maps_places_service.dart';
-import 'package:pathly/services/road_conditions_service.dart';
-import 'package:pathly/utils/api_keys.dart';
 import 'package:pathly/utils/calculate_distance.dart';
 import 'package:pathly/utils/get_color.dart';
 import 'package:pathly/utils/get_latlng_bounds.dart';
@@ -430,7 +428,82 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 
-  void setMyLocationMarker(LocationData locationData) {
+ 
+  void toggleZoomLevel() {
+    double zoomIn = 16;
+    double zoomOut = 11;
+
+    isZoomIn ? currentZoomLevel = zoomOut : currentZoomLevel = zoomIn;
+    googleMapController.animateCamera(
+      CameraUpdate.newCameraPosition(
+        CameraPosition(
+          target: LatLng(originLocation.latitude, originLocation.longitude),
+          zoom: currentZoomLevel,
+        ),
+      ),
+    );
+    isZoomIn = !isZoomIn;
+    setState(() {});
+  }
+   void setNewCameraPosition(LocationData locationData) {
+    if (isFirstView) {
+      CameraPosition cameraPosition = CameraPosition(
+        target: LatLng(locationData.latitude!, locationData.longitude!),
+        zoom: 14,
+      );
+      googleMapController.animateCamera(
+        CameraUpdate.newCameraPosition(cameraPosition),
+      );
+      isFirstView = false;
+    } else {
+      googleMapController.animateCamera(
+        CameraUpdate.newLatLng(
+          LatLng(locationData.latitude!, locationData.longitude!),
+        ),
+      );
+    }
+  }
+
+
+  void setMyLocation() async {
+    locationService.getRealTimeLocatin(
+      onData: (locationData) {
+        originLocation = LatLng(
+          locationData.latitude!,
+          locationData.longitude!,
+        );
+        setMyLocationMarker(locationData);
+        setNewCameraPosition(locationData);
+      },
+    );
+  }
+
+  void loadCustomMarker() async {
+    customIcon = await BitmapDescriptor.fromAssetImage(
+      const ImageConfiguration(size: Size(50, 50)),
+      'assets/icons/marker.png',
+    );
+
+    originMarkerIcon = await BitmapDescriptor.fromAssetImage(
+      const ImageConfiguration(size: Size(50, 50)),
+      'assets/icons/origin_marker.png',
+    );
+
+    destinationMarkerIcon = await BitmapDescriptor.fromAssetImage(
+      const ImageConfiguration(size: Size(50, 50)),
+      'assets/icons/distination_Marker.png',
+    );
+  }
+ void initMapStyle()async{
+    String style=await DefaultAssetBundle.of(context).loadString("assets/map_styles/map_style.json");
+    mapStyle=style;
+    setState(() {
+      
+    });
+  }
+
+
+   void setMyLocationMarker(LocationData locationData) {
     LatLng currentPos = LatLng(locationData.latitude!, locationData.longitude!);
 
     if (distinationLocation != null && !isArrived) {
@@ -559,79 +632,6 @@ class _HomeViewState extends State<HomeView> {
     }
 
     setState(() {});
-  }
-
-  void setMyLocation() async {
-    locationService.getRealTimeLocatin(
-      onData: (locationData) {
-        originLocation = LatLng(
-          locationData.latitude!,
-          locationData.longitude!,
-        );
-        setMyLocationMarker(locationData);
-        setNewCameraPosition(locationData);
-      },
-    );
-  }
-
-  void setNewCameraPosition(LocationData locationData) {
-    if (isFirstView) {
-      CameraPosition cameraPosition = CameraPosition(
-        target: LatLng(locationData.latitude!, locationData.longitude!),
-        zoom: 14,
-      );
-      googleMapController.animateCamera(
-        CameraUpdate.newCameraPosition(cameraPosition),
-      );
-      isFirstView = false;
-    } else {
-      googleMapController.animateCamera(
-        CameraUpdate.newLatLng(
-          LatLng(locationData.latitude!, locationData.longitude!),
-        ),
-      );
-    }
-  }
-
-  void toggleZoomLevel() {
-    double zoomIn = 16;
-    double zoomOut = 11;
-
-    isZoomIn ? currentZoomLevel = zoomOut : currentZoomLevel = zoomIn;
-    googleMapController.animateCamera(
-      CameraUpdate.newCameraPosition(
-        CameraPosition(
-          target: LatLng(originLocation.latitude, originLocation.longitude),
-          zoom: currentZoomLevel,
-        ),
-      ),
-    );
-    isZoomIn = !isZoomIn;
-    setState(() {});
-  }
-
-  void loadCustomMarker() async {
-    customIcon = await BitmapDescriptor.fromAssetImage(
-      const ImageConfiguration(size: Size(50, 50)),
-      'assets/icons/marker.png',
-    );
-
-    originMarkerIcon = await BitmapDescriptor.fromAssetImage(
-      const ImageConfiguration(size: Size(50, 50)),
-      'assets/icons/origin_marker.png',
-    );
-
-    destinationMarkerIcon = await BitmapDescriptor.fromAssetImage(
-      const ImageConfiguration(size: Size(50, 50)),
-      'assets/icons/distination_Marker.png',
-    );
-  }
- void initMapStyle()async{
-    String style=await DefaultAssetBundle.of(context).loadString("assets/map_styles/map_style.json");
-    mapStyle=style;
-    setState(() {
-      
-    });
   }
   Future<List<LatLng>> getRouteData() async {
     LocationInfoModel origin = LocationInfoModel(

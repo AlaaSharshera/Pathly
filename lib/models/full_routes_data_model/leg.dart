@@ -2,7 +2,7 @@ import 'step.dart';
 
 class Leg {
   int? distanceMeters;
-  List<Step>? steps;
+  List<StepModel>? steps;
 
   Leg({this.distanceMeters, this.steps});
 
@@ -10,7 +10,7 @@ class Leg {
     distanceMeters: json['distanceMeters'] as int?,
     steps:
         (json['steps'] as List<dynamic>?)
-            ?.map((e) => Step.fromJson(e as Map<String, dynamic>))
+            ?.map((e) => StepModel.fromJson(e as Map<String, dynamic>))
             .toList(),
   );
 
