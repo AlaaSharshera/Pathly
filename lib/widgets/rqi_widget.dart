@@ -3,13 +3,13 @@ import 'package:flutter_svg/svg.dart';
 import 'package:pathly/utils/textstyles.dart';
 
 class RqiWidget extends StatelessWidget {
-  const RqiWidget({super.key});
-
+  const RqiWidget({required this.alignment,super.key});
+final AlignmentGeometry alignment;
   @override
   Widget build(BuildContext context) {
     return Padding(
    padding: const EdgeInsets.only(right:2.0),
-   child: Align(alignment: Alignment.centerRight,
+   child: Align(alignment: alignment,
     child: SizedBox(
       height: 280,
       child: Row(mainAxisSize: MainAxisSize.min,
