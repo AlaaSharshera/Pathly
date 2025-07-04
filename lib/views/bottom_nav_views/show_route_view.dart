@@ -21,6 +21,7 @@ import 'package:pathly/utils/format_time.dart';
 import 'package:pathly/utils/get_latlng_bounds.dart';
 import 'package:pathly/utils/location_service.dart';
 import 'package:pathly/utils/textstyles.dart';
+import 'package:pathly/views/start_trip_view.dart';
 import 'package:pathly/widgets/instrucion_card.dart';
 import 'package:pathly/widgets/rqi_widget.dart';
 import 'package:pathly/widgets/sliding_panel_button.dart';
@@ -38,6 +39,7 @@ class ShowRouteView extends StatefulWidget {
 
 class _ShowRouteViewState extends State<ShowRouteView> {
    late CameraPosition initialCameraPosition;
+   late LatLng originLocation;
   late GoogleMapController googleMapController;
   double currentZoomLevel = 11;
   bool isZoomIn = false;
@@ -58,19 +60,33 @@ class _ShowRouteViewState extends State<ShowRouteView> {
   String mapStyle='';
   FullRoutesDataModel? fetchedRoutes;
    RouteModel? selectedRoute;
- 
-  
+late final List<VoidCallback?> buttonsAction;
 
 
 
   @override
   void initState() {
+    originLocation=widget.originLocation;
     distinationLocation=LatLng(widget.placesDetailsModel.geometry!.location!.lat!, widget.placesDetailsModel.geometry!.location!.lng!);
     initMapStyle();
     loadCustomMarker();
     googleMapsPlacesService = GoogleMapsPlacesService();
     locationService = LocationService();
     fetchRoutesService = FetchRoutesServiceClass();
+    buttonsAction = [
+    () {
+      Get.to(() => StartTripView(
+            originLocation: originLocation,
+            destinationLocation: distinationLocation,
+            fullRoutePoints: fullRoutePoints,
+            allPolylines: allPolylines,
+            selectedRoute: selectedRoute!,
+          ));
+    },
+    null,
+    null,
+    null,
+  ];
     super.initState();
   }
   @override
@@ -87,8 +103,8 @@ class _ShowRouteViewState extends State<ShowRouteView> {
           GoogleMap(
             style: mapStyle,
             polylines: polylines,
-
-   markers: markers,
+            zoomControlsEnabled: false,
+             markers: markers,
             initialCameraPosition: CameraPosition(
               target: widget.originLocation,
               zoom: 12,
@@ -115,7 +131,7 @@ class _ShowRouteViewState extends State<ShowRouteView> {
                                           mainAxisSize: MainAxisSize.min,
                                          crossAxisAlignment: CrossAxisAlignment.end,
                                             children: [
-                                              RqiWidget(),
+                                              RqiWidget(alignment: Alignment.centerRight,),
                                               SizedBox(height: 20,),
 
                                                GestureDetector(
@@ -309,6 +325,7 @@ TextSpan(
                 backdropEnabled: false,
                 parallaxEnabled: true,
               ),
+              
               Container(
                 height: 64,
                 color: Colors.white,
@@ -328,6 +345,7 @@ TextSpan(
       ),
       );
   }
+ 
 
   void initMapStyle()async{
     String style=await DefaultAssetBundle.of(context).loadString("assets/map_styles/map_style.json");
@@ -408,6 +426,7 @@ List<LatLng> getDecodedRoutes(
 
   List<LatLng> points =
       result.map((e) => LatLng(e.latitude, e.longitude)).toList();
+      fullRoutePoints = points;
 
   return points;
 }
@@ -491,11 +510,7 @@ setState(() {
   
 });
   }
+
 }
 
 
-var buttonsAction=[
-  (){},
-  null,null,null
- 
-];
