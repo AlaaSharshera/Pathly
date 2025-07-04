@@ -50,7 +50,7 @@ class _SearchViewState extends State<SearchView> {
     sessiontoken ??= uuid.v4();
 
     if (_debounce?.isActive ?? false) _debounce!.cancel();
-    _debounce = Timer(const Duration(milliseconds: 400), () async {
+    _debounce = Timer(const Duration(milliseconds: 200), () async {
       if (input.isEmpty) {
         if (mounted) {
           setState(() {
@@ -106,6 +106,7 @@ class _SearchViewState extends State<SearchView> {
                       child: TextFormField(
                         cursorColor: kPrimaryColor,
                         controller: controller,
+                        autofocus: true,
                         textInputAction: TextInputAction.search,
                         onFieldSubmitted:
                             (_) => FocusScope.of(context).unfocus(),
