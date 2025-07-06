@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:location/location.dart';
 
 class LocationService {
   Location location = Location();
+
   Future<void> checkandRequestLocationService() async {
     var isServiceEnabled = await location.serviceEnabled();
     if (!isServiceEnabled) {
@@ -25,11 +28,14 @@ class LocationService {
     }
   }
 
-  void getRealTimeLocatin({void Function(LocationData)? onData}) async {
+
+  Future<StreamSubscription<LocationData>> getRealTimeLocatin({
+    void Function(LocationData)? onData,
+  }) async {
     await checkandRequestLocationService();
     await checkandRequestLocationPermission();
     await location.changeSettings(distanceFilter: 3);
-    location.onLocationChanged.listen(onData);
+    return location.onLocationChanged.listen(onData);
   }
 
   Future<LocationData> getLocation() async {
