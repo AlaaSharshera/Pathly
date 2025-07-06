@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:http_parser/http_parser.dart';
+import 'package:pathly/utils/api_keys.dart';
 
 class ReportService {
   final Dio dio = Dio();
@@ -54,7 +55,7 @@ class ReportService {
       var response = post(
         url: "https://pathly.runasp.net/api/Report/Create",
         token:
-            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxNCIsImp0aSI6IjEyOTg1NGE1LTBhMGYtNGMxYS05MTg2LTc2MzVhMjY4OGIzZSIsImVtYWlsIjoiYWhobWVkc3NAZ21haWwuY29tIiwiaHR0cDovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZWlkZW50aWZpZXIiOiIxNCIsImlzQWRtaW4iOiJGYWxzZSIsImV4cCI6MTc1MDc1MzY4NSwiaXNzIjoiU2VjdXJlQXBpIiwiYXVkIjoiU2VjdXJlQXBpVXNlciJ9.z28abqsMfJtUkIW20KeFspsMhqwwy4fu0GSEu4M-Vz8",
+           ApiKeys.token,
         contentType: "multipart/form-data",
         body: formData,
       );
