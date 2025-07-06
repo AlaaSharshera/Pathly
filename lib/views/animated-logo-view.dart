@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:pathly/constant.dart';
 
-class Testlogo extends StatefulWidget {
-  const Testlogo({super.key});
+class AnimatedLogoView extends StatefulWidget {
+  final VoidCallback onAnimationComplete;
+
+  const AnimatedLogoView({super.key, required this.onAnimationComplete});
+  
 
   @override
-  State<Testlogo> createState() => _TestlogoState();
+  State<AnimatedLogoView> createState() => _AnimatedLogoViewState();
 }
 
-class _TestlogoState extends State<Testlogo> with TickerProviderStateMixin {
+class _AnimatedLogoViewState extends State<AnimatedLogoView> with TickerProviderStateMixin {
   late AnimationController _scaleController;
   late AnimationController _slideController;
 
@@ -45,19 +48,21 @@ class _TestlogoState extends State<Testlogo> with TickerProviderStateMixin {
       CurvedAnimation(parent: _slideController, curve: Curves.easeInOut),
     );
 
-    // Sequence:
     Future.delayed(const Duration(milliseconds: 1500), () {
-      _scaleController.forward().whenComplete(() {
-        setState(() {
-          startSlide = true;
-        });
-        _slideController.forward();
-      });
-
-      setState(() {
-        animateText = true;
-      });
+  _scaleController.forward().whenComplete(() {
+    setState(() {
+      startSlide = true;
     });
+    _slideController.forward().whenComplete(() {
+      widget.onAnimationComplete(); 
+    });
+  });
+
+  setState(() {
+    animateText = true;
+  });
+});
+
   }
 
   @override
