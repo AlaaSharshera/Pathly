@@ -22,6 +22,7 @@ import 'package:pathly/utils/get_latlng_bounds.dart';
 import 'package:pathly/utils/location_service.dart';
 import 'package:pathly/utils/textstyles.dart';
 import 'package:pathly/views/start_trip_view.dart';
+import 'package:pathly/views/animated-logo-view.dart';
 import 'package:pathly/widgets/instrucion_card.dart';
 import 'package:pathly/widgets/rqi_widget.dart';
 import 'package:pathly/widgets/sliding_panel_button.dart';
@@ -75,13 +76,17 @@ late final List<VoidCallback?> buttonsAction;
     fetchRoutesService = FetchRoutesServiceClass();
     buttonsAction = [
     () {
-      Get.to(() => StartTripView(
-            originLocation: originLocation,
-            destinationLocation: distinationLocation,
-            fullRoutePoints: fullRoutePoints,
-            allPolylines: allPolylines,
-            selectedRoute: selectedRoute!,
-          ));
+      Get.to(() => AnimatedLogoView(
+  onAnimationComplete: () {
+    Get.off(() => StartTripView(
+      originLocation: originLocation,
+      destinationLocation: distinationLocation,
+      fullRoutePoints: fullRoutePoints,
+      allPolylines: allPolylines,
+      selectedRoute: selectedRoute!,
+    ));
+  },
+));
     },
     null,
     null,
