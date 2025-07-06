@@ -45,25 +45,38 @@ class _CustomLoginFormState extends State<CustomLoginForm> {
               Center(child: CircularProgressIndicator(color: kPrimaryColor)),
               barrierDismissible: false,
             );
-          } else if (state is SuccessLoginState) {
-            Get.back();
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text(
-                  "Login Successfully",
-                  style: GoogleFonts.poppins(
-                    color: kPrimaryColor,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                backgroundColor: Colors.white,
-              ),
-            );
-          } else if (state is FailureLoginState) {
+          } 
+          else if (state is SuccessLoginState) {
+  Get.back();
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text(
+        "Login Successfully",
+        style: GoogleFonts.poppins(
+          color: kPrimaryColor,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+      backgroundColor: Colors.white,
+    ),
+  );
+  Get.offAll(
+    () => BlocProvider<BottomNavbarCubit>(
+      create: (context) => BottomNavbarCubit(),
+      child: BottomNavbar(),
+    ),
+  );
+}
+
+          else if (state is FailureLoginState) {
             Get.back();
             ScaffoldMessenger.of(
               context,
-            ).showSnackBar(SnackBar(content: Text(state.errMessage)));
+            ).showSnackBar(SnackBar(
+               backgroundColor: Colors.white,content: Text("Email or Password is incorrect!",style: GoogleFonts.poppins(
+          color: kPrimaryColor,
+          fontWeight: FontWeight.w500,
+        ),)));
           }
         },
         child: Column(
@@ -133,12 +146,7 @@ class _CustomLoginFormState extends State<CustomLoginForm> {
                       email: email!,
                       password: pass!,
                     );
-                    Get.offAll(
-                      () => BlocProvider<BottomNavbarCubit>(
-                        create: (context) => BottomNavbarCubit(),
-                        child: BottomNavbar(),
-                      ),
-                    );
+              
                   } catch (e) {
                     throw Exception("Cubit failed");
                   }
