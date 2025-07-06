@@ -26,9 +26,17 @@ abstract class Styles {
     color: kPrimaryColor,
     fontSize: 18,
     letterSpacing: 0.5,
-
     height: 1.33,
     fontWeight: FontWeight.w500,
+  );
+  static TextStyle stylePrimaryColorbold24 = GoogleFonts.poppins(
+    color: kPrimaryColor,
+    fontSize: 24,
+    fontWeight: FontWeight.w600,
+  );
+  static TextStyle stylePrimaryColor18 = GoogleFonts.poppins(
+    color: kPrimaryColor,
+    fontSize: 18,
   );
   static TextStyle stylePrimaryColorbold16 = GoogleFonts.poppins(
     color: kPrimaryColor,
