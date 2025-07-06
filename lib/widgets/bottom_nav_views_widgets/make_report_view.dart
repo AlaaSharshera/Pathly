@@ -239,8 +239,10 @@ class _MakeReportViewState extends State<MakeReportView> {
 
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
+                              backgroundColor: kPrimaryColor,
                             content: Text(
-                              'خطأ في إرسال التقرير: ${e.toString()}',
+                              'خطأ في إرسال التقرير',
+           
                             ),
                           ),
                         );
