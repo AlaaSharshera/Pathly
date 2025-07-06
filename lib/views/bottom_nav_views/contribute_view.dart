@@ -7,6 +7,9 @@ import 'package:pathly/widgets/bottom_nav_views_widgets/custom_contribute_search
 import 'package:pathly/widgets/bottom_nav_views_widgets/custom_contribute_service_coulmn.dart';
 import 'package:pathly/widgets/bottom_nav_views_widgets/custom_earnbadge_container.dart';
 import 'package:pathly/widgets/bottom_nav_views_widgets/make_report_view.dart';
+import 'package:pathly/widgets/dialog_card.dart';
+import 'package:pathly/widgets/voice_bottomsheet_body.dart';
+import 'package:pathly/widgets/voicewaves_bottom_sheet.dart';
 
 class ContributeView extends StatefulWidget {
   const ContributeView({super.key});
@@ -38,9 +41,54 @@ class _ContributeViewState extends State<ContributeView> {
                   children: [
                     CustomContributeSearchTextField(
                       color: Color(0xffE2EBF2),
-                      onTap: () {},
+                      voiceOnTap: () {
+                                   showModalBottomSheet(
+                                  isScrollControlled: true,
+                                  isDismissible: false,
+                                  context: context,
+                                  shape: Border(
+                                    top: BorderSide(
+                                      style: BorderStyle.solid,
+                                      color: Colors.white,
+                                    ),
+                                  ),
+                                  builder:
+                                      (context) => VoiceBottomsheetBody(
+                                        tryOnPressed: () {
+                                          Navigator.pop(context);
+                                           showModalBottomSheet(
+    shape: const RoundedRectangleBorder(
+      borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+    ),
+    context: context,
+    isScrollControlled: true,
+    builder: (_) => VoiceWavesBottomsheetBody(
+      onResult: (recognizedText) {
+        setState(() {
+        //  controller.text = recognizedText;
+        });
+      },
+    ),
+  );
+                                        },
+                                      ),
+                                );
+                      },
+                     
+                      onTap: () {
+                         
+                        
+                      },
                     ),
-                    Image.asset("assets/images/profile.png", width: 38),
+                    GestureDetector( onTap: () {
+                          showDialog(
+                            barrierColor: Colors.black.withOpacity(0.7),
+                            context: context,
+                            builder:
+                                (context) => Center(child: AccountDialogCard()),
+                          );
+                        },
+                      child: Image.asset("assets/images/profile.png", width: 38)),
                   ],
                 ),
               ),
