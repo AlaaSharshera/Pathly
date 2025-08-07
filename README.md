@@ -1,16 +1,8 @@
 # pathly
+• Flutter app to assist users with route tracking using Google Maps SDK.
+• Integrated Google Places API, Directions API, and Routes API.
+• Implemented payment, animation, route tracking, and Shared Preferences.
+• Included simulated visual feedback for road conditions and bumps.
+• Utilized RESTful APIs.
+# Demo => [Watch This](https://youtu.be/sw5j2pjbLkw)
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
